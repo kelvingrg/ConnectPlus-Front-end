@@ -1,18 +1,25 @@
 
 import Connect_plus from  '../../Assets/Connect_plus.png'
 import React,{useState} from 'react';
+ import  background from'../../Assets/landingPageImage.jpg'
+import { LoginModal } from '../Modal/LoginModal';
+import ModalTest from '../Modal/LoginModal/ModalTest';
 
 
 
 
-
-export default function Navbar() {
+export default function LoginNavbar() {
 
   
-  const [navbar, setNavbar] = useState(false); 
-  const [showmodal,setShowModal]=useState(false)
+    const [navbar, setNavbar] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
+    
            return(
-            <nav className="w-full bg-ccBlack shadow"  >
+        
+
+             <div className='bg-cover min-h-screen min-w-full relative'  style={{ backgroundImage: `url(${background})`  }} >  
+          
+              <nav className="w-full hover:bg-ccBlack bg-transparent ">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
                         <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -62,24 +69,26 @@ export default function Navbar() {
                             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                                 navbar ? "block" : "hidden"
                             }`} >
-                            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                                <li className="text-white hover:text-blue-600">
-                                    <a href="javascript:void(0)">Home</a>
+                            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 text-center">
+                                <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg text-center">
+                                    <a href="javascript:void(0)">Login</a>
                                 </li>
-                                <li className="text-white hover:text-blue-600">
-                                    <a href="javascript:void(0)">Blog</a>
+                                <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg">
+                                    <a href="javascript:void(0)">Signup</a>
                                 </li>
-                                <li className="text-white hover:text-blue-600">
-                                    <a href="javascript:void(0)">About US</a>
-                                </li>
-                                <li className="text-white hover:text-blue-600">
-                                    <a href="javascript:void(0)">Contact US</a>
-                                </li>
+                               
+                              
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
+    
+             </div>
+             
+     
+          
+            
         );
     }
 
