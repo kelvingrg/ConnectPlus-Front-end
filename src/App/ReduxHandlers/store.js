@@ -1,12 +1,11 @@
 import React from 'react'
-import { configureStore } from '@reduxjs/toolkit';
-import modalReducer from "./Actions/ModalSlice"
+import {configureStore} from '@reduxjs/toolkit';
+import modalReducer from "./ModalSlice"
 
 
+export const store = configureStore({
 
-export const store =configureStore({
-reducer:{
-    loginModal:modalReducer,
-}
+    reducer: {
+        modal: modalReducer
+    }
 });
-

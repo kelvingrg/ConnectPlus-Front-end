@@ -2,8 +2,9 @@
 import Connect_plus from  '../../Assets/Connect_plus.png'
 import React,{useState} from 'react';
  import  background from'../../Assets/landingPageImage.jpg'
-import { LoginModal } from '../Modal/LoginModal';
-import ModalTest from '../Modal/LoginModal/ModalTest';
+import { useDispatch } from 'react-redux';
+import { setLoginModal } from '../../App/ReduxHandlers/ModalSlice';
+import { setsignupModal } from '../../App/ReduxHandlers/ModalSlice';
 
 
 
@@ -12,7 +13,7 @@ export default function LoginNavbar() {
 
   
     const [navbar, setNavbar] = useState(false); 
-  const [showModal, setShowModal] = useState(false);
+    const dispatch =useDispatch();
     
            return(
         
@@ -71,10 +72,10 @@ export default function LoginNavbar() {
                             }`} >
                             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 text-center">
                                 <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg text-center">
-                                    <a href="javascript:void(0)">Login</a>
+                                    <a href="javascript:void(0)"  onClick={()=>dispatch(setLoginModal(true))}>Login</a>
                                 </li>
                                 <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg">
-                                    <a href="javascript:void(0)">Signup</a>
+                                    <a href="javascript:void(0)" onClick={()=>dispatch(setsignupModal(true))}>Signup</a>
                                 </li>
                                
                               
