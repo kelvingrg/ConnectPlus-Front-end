@@ -1,6 +1,7 @@
 import React from "react";
 import { Route,Routes} from  'react-router-dom'
 import Auth from "../Auth/Auth";
+import HomePage from "../Pages/LandingPage/HomePage/HomePage";
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
 
 
@@ -9,12 +10,13 @@ import { LandingPage } from "../Pages/LandingPage/LandingPage";
 
 function App() {
   return (
-<div className="bg-ccLight h-screen  ">
+<div className=  " bg-ccLight">
 <Routes>
  
-<Route path='/home' element={<LandingPage/>}/>
+<Route path='/' element={<LandingPage/>}/>
+<Route  path="/home" element={<HomePage/>}  />  
      {/* <Route element={Auth}>
-          <Route    />      
+          
           <Route    />
           <Route    />
           <Route    />      
