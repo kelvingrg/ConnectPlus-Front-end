@@ -32,9 +32,10 @@ function SignUpModal() {
     const handleSubmit=(e)=>{
         e.preventDefault()
         if(vallidateEmail() && vallidateNumber() && vallidateName() && validatePassword()){
-        axios.post(
+        axios(
           {
-            url:'/signUp',
+            method:'post',
+            url:'/signup',
             data:signupData
         }).then((response)=>{})
     }
