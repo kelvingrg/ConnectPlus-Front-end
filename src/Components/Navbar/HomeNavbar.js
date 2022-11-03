@@ -2,8 +2,12 @@ import Connect_plus from  '../../Assets/Connect_plus.png'
 import React,{useState} from 'react';
  import  background from'../../Assets/landingPageImage.png'
 import { useDispatch } from 'react-redux';
-import { AiOutlineHome,AiOutlineUsergroupAdd } from "react-icons/ai";
+import { AiOutlineHome,AiOutlineUsergroupAdd,AiOutlineMessage } from "react-icons/ai";
 import { GrGroup } from "react-icons/gr";
+import { BsBriefcase } from "react-icons/bs";
+import { TfiBell } from "react-icons/tfi";
+import { FaRegUserCircle } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
 
 
 
@@ -21,10 +25,12 @@ export default function HomeNavbar() {
               <nav className="w-full bg-ccBlack z-30 fixed">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
-                        <div className="flex items-center justify-between py-2 md:py-3 md:block">
+                        <div className="flex items-center justify-between py-2 md:py-3 ">
                             <a href="javascript:void(0)">
                                 <img src={Connect_plus} alt="" className='' />
                             </a>
+<div className='flex items-center justify-center ' ><input type="text" className='bg-white border rounded-md md:ml-20 pl-2' placeholder='Search..' /><div className={`text-white pl-2 hover:scale-110 hover:text-ccOrange bold `}><CiSearch size={20}/></div> </div>
+
                             <div className="md:hidden">
                                 <button
                                     className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -68,19 +74,32 @@ export default function HomeNavbar() {
                             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                                 navbar ? "block" : "hidden"
                             }`} >
-                            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 text-center text-blue-800">
-                                <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg flex flex-col items-center justify-center text-sm hover:scale-110">
-                                <AiOutlineHome size={20} />
+                            <ul className="items-center justify-center space-y-8 lg:space-x-3 md:space-x-2 md:flex  md:space-y-0 text-center text-blue-800">
+                                <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange md:px-2   flex  md:flex-col items-center justify-center  text-xs hover:scale-110">
+                             <div className='hidden md:contents'>   <AiOutlineHome size={17} /></div>Home
                                   
                                 </li>
-                                <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg flex flex-col items-center justify-center text-sm hover:scale-110">
+                                <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
-               <AiOutlineUsergroupAdd size={20}/>
+                                <div className='hidden md:contents'> <AiOutlineUsergroupAdd size={17}/></div> Connections
                                 </li>
-                                <li className="text-white hover:bg-ccOrange hover:text-black px-2  rounded-lg flex flex-col items-center justify-center text-sm hover:scale-110">
+                                <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
-                                <FontAwesomeIcon icon="fa-light fa-briefcase" />
+                                <div className='hidden md:contents'> <BsBriefcase size={17}/> </div> Jobs
                                                 </li>
+                                                <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
+                               
+                                                <div className='hidden md:contents'>  <TfiBell size={17}/></div>Notifications
+                                                     </li>
+                                                     <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
+                               
+                                                     <div className='hidden md:contents'><AiOutlineMessage size={17}/></div>Messages
+                                                     </li>
+                                                     <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
+                               
+                                                     <div className='hidden md:contents'> <FaRegUserCircle size={17}/></div>Account
+                                                  
+                                                     </li>
                                
                               
                             </ul>
