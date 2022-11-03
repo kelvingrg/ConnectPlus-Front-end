@@ -8,7 +8,7 @@ import { setLoginModal } from '../../../App/ReduxHandlers/ModalSlice';
 function ModalTest() {
   const dispatch=useDispatch()
   return (
-    <div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border' 
+    <div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border ' 
     onClick={(e=>
      dispatch(setLoginModal(false)))} >
 
