@@ -1,8 +1,11 @@
 import React from "react";
 import { Route,Routes} from  'react-router-dom'
-import Auth from "../Auth/Auth";
-import HomePage from "../Pages/LandingPage/HomePage/HomePage";
+import Auth from "../Auth/Auth";import Page404 from "../Pages/404Page/Page404";
+import HomePage from "../Pages/HomePage/HomePage";
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
+import Profile from "../Pages/Profile/Profile";
+import Authorisation from "./Authorisation";
+
 
 
 
@@ -10,27 +13,21 @@ import { LandingPage } from "../Pages/LandingPage/LandingPage";
 
 function App() {
   return (
-<div className=  " bg-ccLight">
+
 <Routes>
- 
+<Route path='page404' element={<Page404/>}/>
 <Route path='/' element={<LandingPage/>}/>
-<Route  path="/home" element={<HomePage/>}  />  
-     {/* <Route element={Auth}>
+     {/* <Route element={<Authorisation/>}> */}
           
-          <Route    />
-          <Route    />
-          <Route    />      
-          <Route    />
-          <Route    />
-          <Route    />
-          <Route    />
-          <Route    />
-    </Route>
-          */}
+<Route  path="/home" element={<HomePage/>}  />  
+<Route  path="/profile" element={<Profile/>}  />  
+         
+    {/* </Route> */}
+         
 </Routes>
   
 
-  </div>
+
 
   );          
 }
