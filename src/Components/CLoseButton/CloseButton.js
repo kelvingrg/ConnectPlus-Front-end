@@ -7,7 +7,7 @@ import { HiXMark } from "react-icons/hi2";
 function CloseButton(props) {
   return (
     <Tippy placement='top' content="Close">
-      <button className=' mt-5 mr-3 rounded-full p-1 hover:bg-ccBlack bg-opacity-50  hover:text-ccOrange  '> <HiXMark className=' hover:text-ccOrange'/></button>
+      <button className=' rounded-full p-1 hover:bg-ccBlack bg-opacity-50  hover:text-ccOrange  '> <HiXMark className=' hover:text-ccOrange'/></button>
       </Tippy>
   )
 }

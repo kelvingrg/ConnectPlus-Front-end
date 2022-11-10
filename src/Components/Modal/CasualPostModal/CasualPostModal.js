@@ -32,7 +32,7 @@ function CasualPostModal() {
 
             <div className='w-full  flex justify-between border-b pb-3'>
                 <h1 className=' text-lg mt-5 mx-5 font-bold'>Create Your Post</h1><br/>
-                <div className='float-right w-fit h-fit'
+                <div className='float-right w-fit h-fit pt-4 pr-3'
                     onClick={
                         () => dispatch(setPostModal(false))
                 }>

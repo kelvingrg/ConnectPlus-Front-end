@@ -5,10 +5,12 @@ import Experience from './Experience/Experience'
 import './ProfileComponent.css'
 import UserDetails from './UserDetails/UserDetails'
 import EducationSession from './EducationSession/EducationSession'
+import UserBasicDetailsModal from '../Modal/UserProfileEditModal/UserBasicDetailsModal/UserBasicDetailsModal'
+import UserProfileEditModal from '../Modal/UserProfileEditModal/UserProfileEditModal'
 
 function ProfileComponent() {
   return (
-    <div className=' parent pt-20 flex justify-center w-screen ' >
+    <>    <div className=' parent pt-20 flex justify-center w-screen ' >
       <div className=' w-full md:w-[70%]  rounded-lg shadow-lg overflow-hidden   '>
  <UserDetails />
  <AboutUser/>
@@ -17,8 +19,10 @@ function ProfileComponent() {
  <EducationSession/>
 
       </div>
-      
-    </div>
+   </div>
+  <UserProfileEditModal heading={"Edit Your Profile"}/>
+   </>
+
   )
 }
 
