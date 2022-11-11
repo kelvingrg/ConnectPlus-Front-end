@@ -1,43 +1,14 @@
-// import React from 'react'
-// import CloseButton from '../../CLoseButton/CloseButton'
-// import UserBasicDetailsModal from './UserBasicDetailsModal/UserBasicDetailsModal'
-
-// function UserProfileEditModal(props) {
-//   return (    <div className='fixed'>
-
-//     <div className='ModalTest absolute flex justify-center items-center h-full w-screen z-30  border  '>
-
-//     <div className='md:w-1/2 w-full m-5 md:m-0 bg bg-white h-auto rounded-lg shadow-lg grid justify-items-center fixed' >
-
-//         <div className='w-full  flex justify-between border-b pb-3'>
-//             <h1 className=' text-lg mt-5 mx-5 font-bold'>{props.heading}</h1><br/>
-//             <div className='float-right w-fit h-fit'
-//            >
-//                 <CloseButton/>
-//                 <br/>
-//             </div>
-//         </div>
-// <UserBasicDetailsModal/>
-
-
-       
-
-//     </div>
-// </div>
-// </div>
-
-//   )
-// }
-
-// export default UserProfileEditModal
-
 
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CloseButton from "../../CLoseButton/CloseButton";
 import UserBasicDetailsModal from "./UserBasicDetailsModal/UserBasicDetailsModal";
 // import './UserProfileEditModal.css';
+import { setUserProfileModalClose } from "../../../App/ReduxHandlers/ModalSlice";
 
 export default function UserProfileEditModal(props) {
+  const dispatch=useDispatch();
+  const{basicDetailsModal}=useSelector((state)=>state.modal)
 
   return (
     <>
@@ -55,16 +26,17 @@ export default function UserProfileEditModal(props) {
                   <h3 className="text-xl font-semibold ">
                    {props.heading}
                   </h3>
-                  <div className=' w-fit h-fit'>
+                  <span className=' w-fit h-fit'
+                   onClick={()=>dispatch(setUserProfileModalClose())}
+                  >
                  <CloseButton/>
-                
-             </div>
+            </span>
                
                 </div>
 
 
                 {/*body starts*/}
-                <UserBasicDetailsModal/>
+                {basicDetailsModal&& <UserBasicDetailsModal/>}
                    {/*body ends */}
                
               </div>

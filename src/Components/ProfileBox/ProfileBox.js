@@ -1,8 +1,10 @@
 import React from 'react'
 import { CButton } from '../Button/CButton'
 import UserRoundDp from '../PostBox/UserRoundDp.js/UserRoundDp'
+import {useNavigate} from "react-router-dom"
 
 function ProfileBox() {
+  const naviagte=useNavigate()
   return (
     <div className='bg-white h-auto w-full border border-zinc-400 rounded-lg grid justify-items-center'>
 
@@ -26,7 +28,7 @@ function ProfileBox() {
     
     
 </div>
-<span className="mb-5"><CButton text={"viewProfile"} /></span>
+<span className="mb-5" onClick={()=>{naviagte('/profile')}}><CButton text={"viewProfile"} /></span>
 
     </div>
   )

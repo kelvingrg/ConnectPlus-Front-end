@@ -37,7 +37,10 @@ const loginReducer = createSlice({
         },
         setPassword: (state, action) => {
             state.password = action.payload
-        }
+        },
+        setUserData:(state, action) => {
+            state.userData = action.payload
+        },
     },
     extraReducers: {
         [loginUser.pending]: () => {
@@ -46,8 +49,8 @@ const loginReducer = createSlice({
         [loginUser.fulfilled]: (state, action) => {
             if (action.payload ?. data ?. login) {
                 localStorage.setItem("token", action.payload.data ?. token);
-                localStorage.setItem("userData", JSON.stringify(action.payload.data ?. userData))
-                state.userData = action.payload.data ?. userData;
+                localStorage.setItem("userData", JSON.stringify(action.payload.data ?.userData))
+                state.userData = action.payload.data ?. userData[0];
                 state.invalidCred = false
                 state.userLogin = true
             } else {
@@ -61,5 +64,5 @@ const loginReducer = createSlice({
     }
 })
 
-export const {setUserName, setPassword} = loginReducer.actions
+export const {setUserName, setPassword,setUserData} = loginReducer.actions
 export default loginReducer.reducer

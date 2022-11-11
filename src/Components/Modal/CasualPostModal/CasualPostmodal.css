@@ -11,13 +11,13 @@
 }
 input::placeholder {
   font-style: italic;
-  padding:5%;
+ 
 }
 /* input::-webkit-file-upload-button {
   display: none;
 } */
 
-input#file {
+.ModalTest input#file {
   display: inline-block;
   width: 100%;
   padding: 120px 0 0 0;

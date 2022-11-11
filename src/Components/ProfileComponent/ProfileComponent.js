@@ -7,8 +7,11 @@ import UserDetails from './UserDetails/UserDetails'
 import EducationSession from './EducationSession/EducationSession'
 import UserBasicDetailsModal from '../Modal/UserProfileEditModal/UserBasicDetailsModal/UserBasicDetailsModal'
 import UserProfileEditModal from '../Modal/UserProfileEditModal/UserProfileEditModal'
+import { useSelector } from 'react-redux'
+
 
 function ProfileComponent() {
+  const{basicDetailsModal}=useSelector((state)=>state?.modal)
   return (
     <>    <div className=' parent pt-20 flex justify-center w-screen ' >
       <div className=' w-full md:w-[70%]  rounded-lg shadow-lg overflow-hidden   '>
@@ -20,7 +23,7 @@ function ProfileComponent() {
 
       </div>
    </div>
-  <UserProfileEditModal heading={"Edit Your Profile"}/>
+ { basicDetailsModal && <UserProfileEditModal heading={"Edit Your Profile"}/>}
    </>
 
   )
