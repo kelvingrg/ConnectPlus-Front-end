@@ -5,10 +5,11 @@ import CloseButton from "../../CLoseButton/CloseButton";
 import UserBasicDetailsModal from "./UserBasicDetailsModal/UserBasicDetailsModal";
 // import './UserProfileEditModal.css';
 import { setUserProfileModalClose } from "../../../App/ReduxHandlers/ModalSlice";
+import UserDpEditModal from "./UserDpEditModal/UserDpEditModal";
 
 export default function UserProfileEditModal(props) {
   const dispatch=useDispatch();
-  const{basicDetailsModal}=useSelector((state)=>state.modal)
+  const{basicDetailsModal,userDpEditModalState}=useSelector((state)=>state.modal)
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function UserProfileEditModal(props) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex  justify-between items-center p-5 border-b border-zinc-400 rounded-t">
-                  <h3 className="text-xl font-semibold ">
+                  <h3 className="text-xl font-semibold normal-case">
                    {props.heading}
                   </h3>
                   <span className=' w-fit h-fit'
@@ -37,6 +38,7 @@ export default function UserProfileEditModal(props) {
 
                 {/*body starts*/}
                 {basicDetailsModal&& <UserBasicDetailsModal/>}
+               {userDpEditModalState && <UserDpEditModal/>}
                    {/*body ends */}
                
               </div>

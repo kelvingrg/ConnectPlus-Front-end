@@ -6,6 +6,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import CPIcon from '../../Icon/CPIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBasicDetailsModal } from '../../../App/ReduxHandlers/ModalSlice';
+import { setUserDpEditModalState } from '../../../App/ReduxHandlers/ModalSlice';
 
 
 
@@ -13,9 +14,7 @@ import { setBasicDetailsModal } from '../../../App/ReduxHandlers/ModalSlice';
 function UserDetails() {
 
 
-
-  const {userData}= useSelector((state)=>state?.login)
-
+ const {userData}= useSelector((state)=>state?.login)
   const dispatch= useDispatch();
   const {basicDetailsModal}=useSelector((state)=>state?.modal)
   return (
@@ -23,8 +22,8 @@ function UserDetails() {
 <div className='relative w-full md:h-60 h-40   flex justify-center'>
 
    <CoverPhoto image={"https://images.unsplash.com/photo-1608408843539-9a2c43a5a60a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1142&q=80"} />
-    <div className='absolute  w-32 h-32 md:w-44 md:h-44 rounded-full top-24 md:top-36  left-4 md:left-16'>
-   <UserRoundDp image={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"} />
+    <div className='absolute  w-32 h-32 md:w-44 md:h-44 rounded-full top-24 md:top-36  left-4 md:left-16' onClick={()=>dispatch(setUserDpEditModalState(true))}>
+   <UserRoundDp image={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"}  />
     </div>
 </div>
 

@@ -6,6 +6,7 @@ const INITIAL_STATE={
    signupModal:false,
    postModal:false,
    basicDetailsModal:false,
+   userDpEditModalState:false
 
 
    
@@ -22,10 +23,25 @@ const modalSlice=createSlice({
         },
         setPostModal:(state,action)=>{state.postModal=action.payload},
         setBasicDetailsModal:(state,action)=>{state.basicDetailsModal=action.payload},
-        setUserProfileModalClose:(state,action)=>{state.basicDetailsModal=false}
+        setUserDpEditModalState:(state,action)=>{state.userDpEditModalState=action.payload},
+
+
+        setUserProfileModalClose:(state,action)=>{
+                                                state.basicDetailsModal=false
+                                                state.userDpEditModalState=false
+                                                  
+                                                   
+                                                  },
     }
 })
-export const {setLoginModal,setsignupModal,setPostModal,setBasicDetailsModal,setUserProfileModalClose}=modalSlice.actions
+export const {
+    setLoginModal,
+    setsignupModal,
+    setPostModal,
+    setBasicDetailsModal,
+    setUserProfileModalClose,
+    setUserDpEditModalState
+}=modalSlice.actions
 export default modalSlice.reducer
 
  
