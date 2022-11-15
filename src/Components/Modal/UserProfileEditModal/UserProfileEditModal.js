@@ -6,10 +6,16 @@ import UserBasicDetailsModal from "./UserBasicDetailsModal/UserBasicDetailsModal
 // import './UserProfileEditModal.css';
 import { setUserProfileModalClose } from "../../../App/ReduxHandlers/ModalSlice";
 import UserDpEditModal from "./UserDpEditModal/UserDpEditModal";
+import UserAboutSessionModal from "./UserAboutSessionModal/UserAboutSessionModal";
 
 export default function UserProfileEditModal(props) {
   const dispatch=useDispatch();
-  const{basicDetailsModal,userDpEditModalState}=useSelector((state)=>state.modal)
+  const{
+    basicDetailsModal,
+    userDpEditModalState,
+    userAboutSessionModalState,
+    
+  }=useSelector((state)=>state.modal)
 
   return (
     <>
@@ -39,6 +45,8 @@ export default function UserProfileEditModal(props) {
                 {/*body starts*/}
                 {basicDetailsModal&& <UserBasicDetailsModal/>}
                {userDpEditModalState && <UserDpEditModal/>}
+               {userAboutSessionModalState && <UserAboutSessionModal/>}
+
                    {/*body ends */}
                
               </div>

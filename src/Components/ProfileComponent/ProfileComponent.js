@@ -11,7 +11,12 @@ import { useSelector } from 'react-redux'
 
 
 function ProfileComponent() {
-  const{basicDetailsModal,userDpEditModalState}=useSelector((state)=>state?.modal)
+  const{
+    basicDetailsModal,
+    userDpEditModalState,
+    userAboutSessionModalState,
+  
+  }=useSelector((state)=>state?.modal)
   return (
     <>    <div className=' parent pt-20 flex justify-center w-screen ' >
       <div className=' w-full md:w-[70%]  rounded-lg shadow-lg overflow-hidden   '>
@@ -25,6 +30,7 @@ function ProfileComponent() {
    </div>
  { basicDetailsModal && <UserProfileEditModal heading={"Edit Your Profile"}/>}
 {userDpEditModalState && <UserProfileEditModal heading={"Upload Your Profile Picture"} />}
+{userAboutSessionModalState && <UserProfileEditModal  heading={"Write something about you.."}/>}
 
    </>
 

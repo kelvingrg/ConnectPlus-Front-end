@@ -1,8 +1,13 @@
 import React from 'react'
+import { useLocation,Navigate,Outlet } from 'react-router-dom'
 
 function Auth() {
+  const token =localStorage.getItem("token")
+  
   return (
-<div>efa</div>
+    token
+    ?<Outlet/>
+    :<Navigate to="/" />
   )
 }
 

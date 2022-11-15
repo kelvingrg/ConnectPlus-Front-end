@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import {CButton} from '../../Button/CButton'
 import {HiXMark} from "react-icons/hi2";
 import {setsignupModal} from '../../../App/ReduxHandlers/ModalSlice';
-import axios from '../../../Config/AxiosInstance'
+import axios from '../../../Config/Axios'
 import './SignUpModal.css'
 
 function SignUpModal() {

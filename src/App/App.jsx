@@ -17,14 +17,14 @@ function App() {
   return (
 
 <Routes>
-<Route path='page404' element={<Page404/>}/>
+<Route path='/page404' element={<Page404/>}/>
 <Route path='/' element={<LandingPage/>}/>
-     {/* <Route element={<Authorisation/>}> */}
+     <Route element={<Authorisation/>}>
           
 <Route  path="/home" element={<HomePage/>}  />  
 <Route  path="/profile" element={<Profile/>}  />  
          
-    {/* </Route> */}
+    </Route>
          
 </Routes>
   
