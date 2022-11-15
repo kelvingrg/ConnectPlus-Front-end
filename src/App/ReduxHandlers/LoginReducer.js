@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk('login/loginUser', async ({email, pass
     const response = await axios({
         method: "post",
         url: '/login',
-        data: {
+        data: {              
             email,
             password
         }
@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk('login/loginUser', async ({email, pass
     console.log(response, "response")
     return response
 })
-
+ 
 
 const loginReducer = createSlice({
 

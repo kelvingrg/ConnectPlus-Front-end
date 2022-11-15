@@ -23,7 +23,7 @@ function UserDetails() {
 
    <CoverPhoto image={"https://images.unsplash.com/photo-1608408843539-9a2c43a5a60a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1142&q=80"} />
     <div className='absolute  w-32 h-32 md:w-44 md:h-44 rounded-full top-24 md:top-36  left-4 md:left-16' onClick={()=>dispatch(setUserDpEditModalState(true))}>
-   <UserRoundDp image={"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"}  />
+   <UserRoundDp image={`images/dp/${userData.dp}`}  />
     </div>
 </div>
 
@@ -52,7 +52,7 @@ function UserDetails() {
 {/* company logo section  */}
     <div className='w-full md:w-1/2 pl-4 pt-5 md:pl-10 flex items-center '>
       <CompanyLogo image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjk9v6uG9g5AEonjfD_kYL_yoU_H78-w93Vl_SY3USsjtHVT3PXGkEB_oIVAAzb9JiP5A&usqp=CAU"} />
-      <p className='pl-14 '>CompanyName</p>
+      <p className='pl-14 '>{userData.currentCompanyName}</p>
 
     </div>
     </div>

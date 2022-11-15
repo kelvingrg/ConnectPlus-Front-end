@@ -1,18 +1,57 @@
 import React,{useState} from 'react'
 import { CButton } from '../../../Button/CButton';
-import { setUserDpEditModalState } from '../../../../App/ReduxHandlers/ModalSlice';
 import { useDispatch } from 'react-redux';
+ import axios from "../../../../Config/AxiosInstance"
+ import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setUserData } from '../../../../App/ReduxHandlers/LoginReducer';
+import { setUserDpEditModalState } from '../../../../App/ReduxHandlers/ModalSlice';
 
 function UserDpEditModal() {
+  useEffect(()=>{},[])
   const dispatch=useDispatch()
+  const {userData} =useSelector((state)=>state?.login)
+  const [error,setError]=useState(null) // error while loading 
+
+
   const [file, setFile] = useState(null);
-    function handleChange(e) {
-        console.log(e.target.files);
+  const [profileDp ,setProfileDp]=useState({file:[]});
+  
+  
+  function handleChange(e) {
+        console.log(e.target.files[0]);
         setFile(URL.createObjectURL(e.target.files[0]));
+        setProfileDp({file:e.target.files[0]})
     }
+
+   
+    const handleSubmit = async(e)=>{
+      e.preventDefault()
+                                             
+      let formData=new FormData()
+      console.log(profileDp.file,"file name on submit");
+      formData.append("dp",profileDp.file);
+      const response = await axios.post('/changeProfileDp',formData,{ 
+        params:{userId:userData._id}, // user id is passed as qury string 
+        headers: { "Content-Type": "multipart/form-data" } })
+        .then((response)=>{
+          console.log(response)
+          if(response?.data?.loadError){
+
+          }
+         if(response?.data?.upload){
+          console.log("inside modal change ")
+          // to set new useradata
+           dispatch(setUserData(response.data.userData[0]))
+           //modal close 
+          dispatch(setUserDpEditModalState(false))
+            }
+        })
+    }
+   
   return (
     <>
-  
+                
    
         <div class=" h-3/4 w-full">
 
@@ -28,27 +67,21 @@ function UserDpEditModal() {
                         <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Attach a file</p>
                     </div>
-                    <input type="file" class="opacity-0" onChange={handleChange} />
+                    <form action="">
+                       <input type="file" class="opacity-0" name="dp" accept="image/*"  onChange={handleChange} />
+                       </form>
+  
                 </label>
             </div>
         </div>
+       
    
         { file? <div className=' w-auto h-72 flex items-center justify-center'><img src={file} className="w-auto h-full max-h-full grid place-self-center border shadow-lg" /></div>:null}
         <div class="flex justify-end p-2">
-          <button className='text-red-600 mr-5  hover:border border-red-600 rounded-full px-3 ' onClick={()=>setFile(null)}>Delete</button>
-         <CButton text={"Upload"}/>
+          <button className='text-red-600 mr-5  hover:border border-red-600 rounded-full px-3 ' onClick={()=>{setFile(null);}}>Delete</button>
+         <span onClick={handleSubmit} ><CButton text={"Upload"}/> </span> 
         </div>
    
-
- 
-
-{/* 
-<div className="">
-<h2>Add Image:</h2>
-<input type="file" onChange={handleChange} />
-<img src={file} />
-
-</div> */}
 </>
   )
 
