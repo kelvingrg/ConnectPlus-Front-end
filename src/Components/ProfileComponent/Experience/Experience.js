@@ -34,7 +34,7 @@ function Experience() {
  <p className='inline font-thin text-sm'> {element.workLocation}</p>
 </div>
 </div>
-<p>text area abourt</p>
+<p>{element.jd}</p>
 </div>)}
 
 

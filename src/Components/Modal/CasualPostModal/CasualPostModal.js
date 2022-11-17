@@ -18,9 +18,22 @@ import "./CasualPostmodal.css"
 
 
 function CasualPostModal() {
+    const {userData}=useSelector(state=>state?.login)
     const {videoPost, imagePost, jobPost} = useSelector((state) => state ?. postType)
     console.log(videoPost, "vidso");
     const dispatch = useDispatch()
+const [postText,setPostText]=useState(null)
+const handleTextChange=()=>{
+setPostText(e.target.value)
+
+}
+
+const handlesubmit=()=>{
+    alert('submit')
+    console.log();
+}
+
+
     return (<div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border float'>
 
         <div className='md:w-1/2 w-full m-5 md:m-0 bg bg-white h-auto rounded-lg shadow-lg grid justify-items-center'
@@ -36,7 +49,7 @@ function CasualPostModal() {
                     onClick={
                         () => dispatch(setPostModal(false))
                 }>
-                    <CloseButton/>
+                    <CloseButton />
                     <br/>
                 </div>
             </div>
@@ -46,11 +59,11 @@ function CasualPostModal() {
                 <div className=''>
                     <div className='flex mb-3 '>
                         <div className=' w-12 h-12 rounded-full mt-1 '>
-                            <UserRoundDp/>
+                            <UserRoundDp  image={`images/dp/${userData.dp}`}/>
                         </div>
                         <div className='flex-col'>
 
-                            <h1 className='pl-2'>FullName
+                            <h1 className='pl-2 font-semibold capitalize'>{userData.userName}
                             </h1>
                             <p className='ml-2 bg-gray-400 flex items-center justify-center rounded-full '>sample</p>
 
@@ -63,7 +76,10 @@ function CasualPostModal() {
                                 (videoPost || imagePost) ? "h-auto" : "h-56 "
                             }`
                         }
-                        placeholder='share your awesome experience...'/> {/* 
+                        placeholder='share your awesome experience...'
+                        name="textContent"
+                        onChange={handleTextChange}
+                        /> {/* 
    {videoPost && <input type="file"   class="hidden"  />}
    {imagePost && <input type="image" className='bg-zinc-700 w-full'   />}
    {jobPost && <input type="file" className='bg-zinc-700 w-full'  class="hidden"  />} */}

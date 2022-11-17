@@ -82,8 +82,8 @@ const dispatch=useDispatch()
            })
            .catch((error)=>{
             console.log(error)
-            //  localStorage.clear()
-            //          navigate('/')
+             localStorage.clear()
+                     navigate('/')
            })
         
 
