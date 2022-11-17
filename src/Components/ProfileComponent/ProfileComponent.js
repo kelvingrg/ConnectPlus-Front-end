@@ -15,11 +15,14 @@ function ProfileComponent() {
     basicDetailsModal,
     userDpEditModalState,
     userAboutSessionModalState,
+    userExperienceEditModalState,
+    userSkillUpdateModalState,
+
   
   }=useSelector((state)=>state?.modal)
   return (
     <>    <div className=' parent pt-20 flex justify-center w-screen ' >
-      <div className=' w-full md:w-[70%]  rounded-lg shadow-lg overflow-hidden   '>
+      <div className={ `w-full ${userDpEditModalState?"md:w-[40%]":"md:w-[70%]"}  rounded-lg shadow-lg overflow-hidden  `} >
  <UserDetails />
  <AboutUser/>
  <Experience/>
@@ -31,6 +34,8 @@ function ProfileComponent() {
  { basicDetailsModal && <UserProfileEditModal heading={"Edit Your Profile"}/>}
 {userDpEditModalState && <UserProfileEditModal heading={"Upload Your Profile Picture"} />}
 {userAboutSessionModalState && <UserProfileEditModal  heading={"Write something about you.."}/>}
+{userExperienceEditModalState && <UserProfileEditModal  heading={"Enter your work Experince"}/>}
+{userSkillUpdateModalState && <UserProfileEditModal  heading={"Skills Session"}/>}
 
    </>
 

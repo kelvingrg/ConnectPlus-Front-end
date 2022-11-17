@@ -7,7 +7,9 @@ const INITIAL_STATE={
    postModal:false,
    basicDetailsModal:false,
    userDpEditModalState:false,
-   userAboutSessionModalState:false
+   userAboutSessionModalState:false,
+   userExperienceEditModalState:false,
+   userSkillUpdateModalState:false,
 
 
    
@@ -26,11 +28,15 @@ const modalSlice=createSlice({
         setBasicDetailsModal:(state,action)=>{state.basicDetailsModal=action.payload},
         setUserDpEditModalState:(state,action)=>{state.userDpEditModalState=action.payload},
         setUserAboutSessionModalState:(state,action)=>{state.userAboutSessionModalState=action.payload},
+        setUserExperienceEditModalState:(state,action)=>{state.userExperienceEditModalState=action.payload},
+        setUserSkillUpdateModalState:(state,action)=>{state.userSkillUpdateModalState=action.payload},
 
         setUserProfileModalClose:(state,action)=>{
                                                 state.basicDetailsModal=false
                                                 state.userDpEditModalState=false
                                                 state.userAboutSessionModalState=false
+                                                state.userExperienceEditModalState=false
+                                                state.userSkillUpdateModalState=false
                                                   
                                                    
                                                   },
@@ -44,6 +50,9 @@ export const {
     setUserProfileModalClose,
     setUserDpEditModalState,
     setUserAboutSessionModalState,
+    setUserExperienceEditModalState,
+    setUserSkillUpdateModalState,
+
 
 }=modalSlice.actions
 export default modalSlice.reducer

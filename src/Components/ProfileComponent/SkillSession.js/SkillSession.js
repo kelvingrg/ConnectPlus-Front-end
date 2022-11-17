@@ -4,8 +4,11 @@ import CompanyLogo from '../../CompanyLogo/CompanyLogo'
 import CPIcon from '../../Icon/CPIcon'
 import { BiRightArrow } from "react-icons/bi";
 import SkillProgressBar from '../SkillProgressBar/SkillProgressBar';
+import { useDispatch } from 'react-redux';
+import { setUserSkillUpdateModalState } from '../../../App/ReduxHandlers/ModalSlice';
 
 function SkillSession()  {
+  const dispatch=useDispatch()
     return (
       <div className='mt-2 bg-white border border-zinc-400 rounded-lg shadow-lg px-5 py-5'>
       {/* skillset hrading box start */}
@@ -13,7 +16,7 @@ function SkillSession()  {
       <h3 className='font-bold text-xl '>Skills</h3>
       <span className=' float-right pr-5 '>
   <CPIcon tippyPlacement="bottom" tippyContent="Edit ">
-  <span className='rounded-full'><AiOutlineEdit size={20}/></span>
+  <span className='rounded-full' onClick={()=>dispatch(setUserSkillUpdateModalState(true))}><AiOutlineEdit size={20}/></span>
   </CPIcon>
   </span>
   </div>

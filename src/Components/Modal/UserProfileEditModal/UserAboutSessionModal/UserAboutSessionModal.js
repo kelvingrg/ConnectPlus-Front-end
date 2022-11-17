@@ -30,6 +30,7 @@ function UserAboutSessionModal() {
         console.log(response,"iresponse of userAboutSessionUpdate ")
         // to set new useradata
         dispatch(setUserData(response.data.userData))
+        localStorage.setItem("userData",response.data.userData)
         // modal close
          dispatch(setUserAboutSessionModalState(false))
     }
