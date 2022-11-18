@@ -2,15 +2,18 @@ import React from 'react'
 import { CButton } from '../Button/CButton'
 import UserRoundDp from '../PostBox/UserRoundDp.js/UserRoundDp'
 import {useNavigate} from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 function ProfileBox() {
   const naviagte=useNavigate()
+  const {userData}=useSelector(state=>state.login)
+  
   return (
     <div className='bg-white h-auto w-full border border-zinc-400 rounded-lg grid justify-items-center'>
 
-<div className='h-20 w-20 mt-5'><UserRoundDp></UserRoundDp> </div>
-<div className="font-semibold">Full name </div>
-<div className="font-thin"> Basic skills </div>
+<div className='h-20 w-20 mt-5'><UserRoundDp image={`images/dp/${userData.dp}`}></UserRoundDp> </div>
+<div className="font-semibold">{userData.userName} </div>
+<div className="font-thin">{userData.keyroles}</div>
 
 <div className=' w-4/5 flex-col pt-5 border-t px-5 mb-8'>
     <div className='flex justify-between'>

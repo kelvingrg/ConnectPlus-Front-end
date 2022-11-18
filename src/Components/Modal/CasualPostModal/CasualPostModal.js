@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {HiXMark} from "react-icons/hi2";
@@ -14,24 +14,95 @@ import {BsBriefcase} from "react-icons/bs";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import CloseButton from '../../CLoseButton/CloseButton';
+import Swal from 'sweetalert2'
+import axios from '../../../Config/Axios'
 import "./CasualPostmodal.css"
+import { useNavigate } from 'react-router-dom';
+import { setUserData } from '../../../App/ReduxHandlers/LoginReducer';
+
 
 
 function CasualPostModal() {
     const {userData}=useSelector(state=>state?.login)
     const {videoPost, imagePost, jobPost} = useSelector((state) => state ?. postType)
-    console.log(videoPost, "vidso");
+    const[file,setFile]=useState();
+    const[media,setMedia]=useState({});
     const dispatch = useDispatch()
+    const navigate=useNavigate()
 const [postText,setPostText]=useState(null)
-const handleTextChange=()=>{
+const [fileType,setFileType]=useState("video");
+
+const handleTextChange=(e)=>{
 setPostText(e.target.value)
 
 }
 
-const handlesubmit=()=>{
-    alert('submit')
-    console.log();
+const handleMediaChange= (e,)=>{
+    console.log(e.target.files[0]);
+    setFile(URL.createObjectURL(e.target.files[0]));
+ setMedia({file: e.target.files[0]})
+   const mediaType= e.target.files[0].type?.split('/')
+    setFileType(mediaType[0])
+  
+    
 }
+
+const doBackendCall=()=>{  
+    let formData = new FormData()
+    formData.append("media", media.file);
+    const mediaType=  file ? doCheckFileType():null  // to check the media type 
+    
+axios.post('/addNewPost', formData, {
+        params: {
+            userId: userData._id,
+            postText:postText,
+            mediaType:mediaType
+        },       
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    }).then((response) => {
+        console.log(response, "response from backend after image upload req gone from front end")
+        if (response ?. data ?. loadError) {
+            navigate('/page404')
+        }
+        if (response ?. data ?. upload) {
+            console.log("inside modal change ")
+            // to set new useradata
+            // dispatch(setUserData(response.data.userData[0]))
+            // modal close
+            dispatch(setPostModal(false))
+        }
+    }).catch((error => {
+        localStorage.clear()
+        navigate('/')
+    })) }
+
+    // fuction check type of file 
+   const doCheckFileType=()=>{
+   const mediaType= media?.file?.type?.split('/')
+   return(mediaType[0])
+
+   }
+
+
+const doSwal=()=>{
+    alert("no content")
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: " You can't share an empty Post!",
+        footer: 'Add the content to post'
+      })
+}
+
+const handlesubmit=(e)=>{
+e.preventDefault();
+    ( media?.file||postText)?doBackendCall():doSwal();
+
+    }
+
+       
 
 
     return (<div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border float'>
@@ -85,19 +156,52 @@ const handlesubmit=()=>{
    {jobPost && <input type="file" className='bg-zinc-700 w-full'  class="hidden"  />} */}
 
                     {
-                    (videoPost || imagePost) ? <div className="flex justify-center items-center w-full">
-                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                            <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                </svg>
-                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                    <span className="font-semibold">Click to upload</span>
-                                    or drag and drop</p>
-                            </div>
-                            <input id="dropzone-file" type="file" className='hidden'/>
-                        </label>
-                    </div> : null
+                    (videoPost || imagePost) ?
+                    
+                    <>                    
+                    <div class=" h-3/4 w-full">
+
+                <div class={
+                    `${
+                        file ? "hidden" : "flex"
+                    } items-center justify-center w-full `
+                }>
+                    <label class=" w-full h-full  border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                        <div class="flex flex-col items-center justify-center pt-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 group-hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                            <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                Attach a file</p>
+                        </div>
+                        <form action="">
+                            <input type="file" class="opacity-0" name="dp" 
+                                onChange={handleMediaChange}/>
+                        </form>
+
+                    </label>
+                </div>
+            </div>
+  
+   { file ? <div className=' w-auto h-72 flex items-center justify-center'>
+    
+   {
+
+   (fileType=="image") && <img src={file}
+            className="w-auto h-full max-h-full grid place-self-center border shadow-lg"/>
+            }
+              {(fileType=="video") && <video  className="w-auto h-full max-h-full grid place-self-center border shadow-lg" controls>
+    <source src={file}/>
+</video>
+            }
+            
+            </div> : null}
+
+ 
+ 
+</>
+
+ : null
                 }
 
 
@@ -127,7 +231,15 @@ const handlesubmit=()=>{
                         </div>
 
                         <div className='flex  justify-end '>
-                            <CButton text={'Post'}></CButton>
+                      {  file && <button className='text-red-600 mr-5  hover:border border-red-600 rounded-full px-3 '
+                    onClick={
+                        () => {
+                            setFile(null);
+                            setMedia(null);
+                            setFileType(null);
+                        }
+                }>Delete</button>}
+                           <span  onClick={handlesubmit} ><CButton text={'Post'}></CButton></span> 
                         </div>
 
 

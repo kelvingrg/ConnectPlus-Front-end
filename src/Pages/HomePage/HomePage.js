@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CasualPostModal from '../../Components/Modal/CasualPostModal/CasualPostModal'
 import HomeNavbar from '../../Components/Navbar/HomeNavbar'
 import PostBox from '../../Components/PostBox/PostBox'
@@ -6,15 +6,34 @@ import './HomePage.css'
 import {useSelector} from 'react-redux'
 import ProfileBox from '../../Components/ProfileBox/ProfileBox'
 import Feeds from '../../Components/Feeds/Feeds'
+import axios from '../../Config/Axios'
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
     const {postModal} = useSelector((state) => state ?. modal)
+    const [postData,setPostData]=useState([])
+  const navigate=useNavigate()
+  useEffect(()=>{
+axios.get("/getCasualPostData").then(response=>{
+  if(response?.data?.dataFetched){
+    setPostData(response?.data?.data)
+  }
+  if(response?.data?.loadError){
+    navigate('/page404')
+  }
+
+})
+.catch((error)=>{
+  localStorage.clear()
+          navigate('/')
+})
+  },[])
     return (<>
 
         <div className='parent bg-ccLight h-fit'>
             <HomeNavbar/>
-            <div className='flex pt-20 justify-around  '> {/* left box start  */}
-                <div className=' w-1/5 h-1/ hidden md:block '>
+            <div className='flex pt-20  px-10 justify-around  '> {/* left box start  */}
+                <div className=' w-1/5 h-auto hidden md:block '>
                     <div className='w-1/5 fixed '>
                         <ProfileBox/>
                     </div>
@@ -22,13 +41,11 @@ function HomePage() {
                 {/* left box end  */}
 
                 {/* center box start */}
-                <div className='justify-self-center items-center w-full md:w-[50%] h-auto block '>
+                <div className='justify-self-center items-center w-full md:w-[45%] h-auto block '>
                     <PostBox/>
-                    <Feeds/>
-                    <Feeds/>
-                    <Feeds/>
-                    <Feeds/>
-                    <Feeds/>
+                    {postData.map((element)=><Feeds data={element}/>)}
+                    
+                    
                 </div>
                 {/* center box end */}
 
