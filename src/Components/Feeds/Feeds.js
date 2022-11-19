@@ -41,11 +41,8 @@ function Feeds({data}) {
     <source  src={`posts/files/${data?.file}` }/>
 </video> } 
 
-<div className='border-b px-4 flex justify-between'>
-  <p className='font-light text-sm flex items-center'> <AiOutlineLike/> 700 Likes</p>
-  <p className='font-light text-sm flex items-center'> <AiOutlineComment/> 300 comments</p>
-</div>
-  <FeedActionBar/>
+
+  <FeedActionBar data={data}/>
 
 
 
