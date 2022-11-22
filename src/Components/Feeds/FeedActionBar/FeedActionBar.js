@@ -11,11 +11,13 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
+import CommentBox from '../../CommentBox/CommentBox';
 
 function FeedActionBar({data}) {
 const {userData} = useSelector((state)=>state.login)
 const[postData,setPostData]=useState(data)
 const [isLiked,setIsLiked]=useState(true)
+const [commentCount,setCommentCount]=useState()
 
 //accordion
 const [open, setOpen] = useState(0);
@@ -57,15 +59,18 @@ const handleOpen = (value) => {
   setPostData(response.data.singlePostData)
 
       })
+}
+
+const handleChildData =(count)=>{
+  setCommentCount(count)
+}
 
 
-
-  }
   return (
 
     <><div className='border-b px-4 flex justify-between'>
     <p className='font-light text-sm flex items-center'> <AiOutlineLike/> {postData?.like?.length} &nbsp;Likes</p>
-    <p className='font-light text-sm flex items-center'> <AiOutlineComment/> 300 comments</p>
+    <p className='font-light text-sm flex items-center'> <AiOutlineComment/> {commentCount} &nbsp; comments</p>
   </div>
     <div className='h-14  w-full flex items-center  justify-around'>
     
@@ -80,10 +85,8 @@ const handleOpen = (value) => {
  <Accordion open={open === 1}>
      
         <AccordionBody>
-          We're not always in the position that we want to be at. We're
-          constantly growing. We're constantly making mistakes. We're constantly
-          trying to express ourselves and actualize our dreams.
-        </AccordionBody>
+<CommentBox data={data} childDataFetch={handleChildData}/>
+          </AccordionBody>
       </Accordion>
 {/* accordion  */}
     </>
