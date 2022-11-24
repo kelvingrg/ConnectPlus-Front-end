@@ -139,14 +139,11 @@ function SignUpModal() {
             return false
         }
 
-
-        // imput validtion functions ends
-
-
     }
+     // imput validtion functions ends
     const getVerificationCode=(e)=>{
         e.preventDefault();
-
+        setEnterVerifyCode(true)
         axios.get(`/verifyEmail?email=${signupData.email}`).then((response)=>{
             console.log(response);
          if(response.data.codeGenerated){

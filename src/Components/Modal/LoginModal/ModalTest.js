@@ -4,7 +4,7 @@ import './LoginModal.css'
 import { HiXMark } from "react-icons/hi2";
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginModal } from '../../../App/ReduxHandlers/ModalSlice';
-import { setsignupModal } from '../../../App/ReduxHandlers/ModalSlice';
+import { setsignupModal,setForgotPassWordModalState } from '../../../App/ReduxHandlers/ModalSlice';
 import { loginUser, setPassword,setUserName } from '../../../App/ReduxHandlers/LoginReducer';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +40,13 @@ userLogin && navigate("/home")
       <input type="password" className='border  border-black w-full my-3 h-10 rounded-lg pl-4'  name="password" placeholder='Enter your Password ..' value={password} onChange={(e)=> dispatch(setPassword(e.target.value))}/>
      {invalidCred &&<p className='text-red-600'> invalid credentials 
      </p>}
-     <p className=' font-thin italic text-blue-400 underline'><a href="">forgot Password ?</a></p>
+     <p className=' font-thin italic text-blue-400 underline'><a onClick={()=>{
+     dispatch(setLoginModal(false))
+    return dispatch(setForgotPassWordModalState(true))
+   } }
+     
+     
+     >forgot Password ?</a></p>
       <div className='w-full flex  justify-center items-center mt-5 '>
      
 <CButton text={'Login'}/>

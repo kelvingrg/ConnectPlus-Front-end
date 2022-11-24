@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const INITIAL_STATE={
    loginModal:false,
    signupModal:false,
+   forgotPassWordModalState:false,
    postModal:false,
    basicDetailsModal:false,
    userDpEditModalState:false,
@@ -24,6 +25,8 @@ const modalSlice=createSlice({
         {state.signupModal=action.payload
             state.loginModal=false;
         },
+        setForgotPassWordModalState:(state,action)=>{state.forgotPassWordModalState=action.payload},
+
         setPostModal:(state,action)=>{state.postModal=action.payload},
         setBasicDetailsModal:(state,action)=>{state.basicDetailsModal=action.payload},
         setUserDpEditModalState:(state,action)=>{state.userDpEditModalState=action.payload},
@@ -52,7 +55,7 @@ export const {
     setUserAboutSessionModalState,
     setUserExperienceEditModalState,
     setUserSkillUpdateModalState,
-
+    setForgotPassWordModalState,
 
 }=modalSlice.actions
 export default modalSlice.reducer
