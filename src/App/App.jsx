@@ -6,6 +6,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
 import Profile from "../Pages/Profile/Profile";
 import Authorisation from "./Authorisation";
+import LoginAuthorisation from "./LoginAuthorisation";
 
 
 
@@ -17,8 +18,10 @@ function App() {
   return (
 
 <Routes>
-<Route path='/page404' element={<Page404/>}/>
-<Route path='/' element={<LandingPage/>}/>
+    <Route path='/page404' element={<Page404/>}/>
+<Route element={<LoginAuthorisation/>}>
+    <Route path='/' element={<LandingPage/>}/>
+</Route>  
      <Route element={<Authorisation/>}>
           
 <Route  path="/home" element={<HomePage/>}  />  
