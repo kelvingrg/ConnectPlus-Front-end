@@ -21,6 +21,7 @@ function UserBasicDetailsModal() {
         currentCompanyName: userData ?. currentCompanyName,
         currentDesignation: userData ?. currentDesignation
     })
+    const [resume,setResume]=useState({})
     const dispatch = useDispatch()
     // console.log(Object.values(data.keyrole),"juhsrfiuhseiuhru",Object.values(data.keyrole).length)
 
@@ -28,17 +29,32 @@ function UserBasicDetailsModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        data.userId = userData[0]._id
-        console.log("handleSubmit", data)
+
+        let formData = new FormData()
+
+        formData.append("resume", resume.file);
+    
+        console.log("handleSubmit", formData)
 
         // backened call and response
-        axios.post('/userBasicDetailsUpdate', data).then((response) => {
+        axios.post('/userBasicDetailsUpdate',formData, {
+            params: {
+                userId: userData._id,
+                userName:data.userName,
+            keyrole:data.keyrole,
+            currentCompanyName:data.currentCompanyName,
+            currentDesignation:data.currentDesignation,
+            }, // user id is passed as qury string
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }).then((response) => {
             if (response ?. data ?. loadError) {
                 navigate('/page404')
             } else {
                 console.log(response, "backend data from ")
                 dispatch(setBasicDetailsModal(false))
-                dispatch(setUserData(response.data))
+                 dispatch(setUserData(response.data))
             }
         }).catch((error) => {
             localStorage.clear()
@@ -60,9 +76,8 @@ function UserBasicDetailsModal() {
                         data.userName
                     }
                     onChange={
-                        (e) => setData({
-                            ...data,
-                            userName: e.target.value
+                        (e) => setResume({
+                            file:e.target.files[0]
                         })
                     }/>
 
@@ -132,6 +147,17 @@ function UserBasicDetailsModal() {
                             }/>
                     </div>
                 </div>
+                <div className='w-full '>
+                        <label htmlFor="">Current Company Name</label><br/>
+                        <input type="file" name='resume' className='border border-zinc-400  rounded-lg pl-5 w-full capitalize  mb-1' accept='application/*' placeholder="Upload your Resume"
+                        
+                            onChange={
+                                (e) => setResume({
+                                
+                                file: e.target.files[0]
+                                })
+                            }/>
+                    </div>
 
 
             </div>

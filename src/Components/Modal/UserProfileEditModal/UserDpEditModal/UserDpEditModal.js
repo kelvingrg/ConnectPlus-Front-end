@@ -48,7 +48,7 @@ function UserDpEditModal() {
             if (response ?. data ?. upload) {
                 console.log("inside modal change ")
                 // to set new useradata
-                dispatch(setUserData(response.data.userData[0]))
+                dispatch(setUserData(response.data.userData))                 
                 // modal close
                 dispatch(setUserDpEditModalState(false))
             }

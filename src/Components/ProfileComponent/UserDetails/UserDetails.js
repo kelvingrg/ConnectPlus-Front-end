@@ -7,16 +7,37 @@ import CPIcon from '../../Icon/CPIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBasicDetailsModal } from '../../../App/ReduxHandlers/ModalSlice';
 import { setUserDpEditModalState } from '../../../App/ReduxHandlers/ModalSlice';
+import { AiOutlineEye } from "react-icons/ai";
+import FileDownload from "js-file-download"
+import axios from '../../../Config/Axios';
 
 
 
 
 function UserDetails() {
 
+  const resumeView = () => {
+  axios({
+    url:`/getResume?data=${userData.resume}`,
+    method:"post",
+    responseType:"blob"
+
+  })
+  .then((response)=>{
+    console.log(response);
+    FileDownload(response.data, `resume/resume/${userData.resume}`)
+  })
+      
+        
+    
+}
+
+
 
  const {userData}= useSelector((state)=>state?.login)
   const dispatch= useDispatch();
   const {basicDetailsModal}=useSelector((state)=>state?.modal)
+  console.log(userData.keyrole,"Object.values(userData.keyrole)");
   return (
     <div className='border-b border-zinc-400 rounded-lg w-full pb-6 bg-white'>
 <div className='relative w-full md:h-60 h-40   flex justify-center'>
@@ -39,22 +60,28 @@ function UserDetails() {
 {/* edit button  */}
 <div className='md:flex grid mt-20 md:mt-24 w-full'>
  
-<div className='  pl-4 md:pl-16 md:w-1/2 w-ull  '>
+<div className='  pl-4 md:pl-16 md:w-1/2 w-full  '>
 <p className='text-lg font-bold'>{userData.userName}</p>
 
 
-
-  <p className='text-sm font-thin w-fit '>{Object.values(userData.keyrole).map((element)=>element)} </p>
+{/* key roles  */}
+  <p className='text-xs font-thin w-fit'>{Object.values(userData.keyrole).map((element)=>element+" || ")} </p>
+{/* resume  */}
+{ userData.resume && <button className='rounded-lg focus: mt-5 px-3 py-2 font-light border flex items-center justify-center active:bg-ccOrange active:text-ccBlack active:border-ccBlack'
+onClick={resumeView}
+> <AiOutlineEye size={17}/> Resume</button>
+}
 
 
 
     </div>
 {/* company logo section  */}
-    <div className='w-full md:w-1/2 pl-4 pt-5 md:pl-10 flex items-center '>
+    <div className='w-full md:w-1/2 pl-4 pt-5 md:pl-10 flex items-center'>
       <CompanyLogo image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjk9v6uG9g5AEonjfD_kYL_yoU_H78-w93Vl_SY3USsjtHVT3PXGkEB_oIVAAzb9JiP5A&usqp=CAU"} />
       <p className='pl-14 '>{userData.currentCompanyName}</p>
+ </div>
 
-    </div>
+    
     </div>
 
     </div>

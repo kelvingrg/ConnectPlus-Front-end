@@ -39,7 +39,7 @@ const loginReducer = createSlice({
             state.password = action.payload
         },
         setUserData: (state, action) => {
-            state.userData = action.payload
+            state.userData = action.payload[0]
         }
     },
     extraReducers: {
@@ -47,7 +47,7 @@ const loginReducer = createSlice({
             console.log('pensinf')
         },
         [loginUser.fulfilled]: (state, action) => {
-            if (action.payload ?. data ?. login) {
+            if (action.payload ?. data ?. login) {              
                 localStorage.setItem("token", action.payload.data ?. token);
                 localStorage.setItem("userData", JSON.stringify(action.payload.data ?. userData))
                 state.userData = action.payload.data ?. userData[0];
