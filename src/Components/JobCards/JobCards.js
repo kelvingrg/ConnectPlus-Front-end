@@ -8,31 +8,32 @@ import {
   } from "@material-tailwind/react";
   import { TfiLocationPin } from "react-icons/tfi";
   import { AiFillCaretRight } from "react-icons/ai";
+  import moment from 'moment'
 
-function JobCards() {
+function JobCards({data}) {
   return (
     <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3">
     
       <div className='flex p-3 pt-4'>
       <img
-          src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+          src={`jobPosts/CompanyLogo/${data.companyLogo}`}
           alt="img-blur-shadow"
           className="w-16 h-16"
         />
         <div className='pl-2'>
-<p className='bold text-black font-bold text-lg capitalize'>desigantion looking   </p>
-<p className='bold text-black  font-semibold capitalize'> company name </p>
+<p className='bold text-black font-bold text-lg capitalize'>{data.designation} </p>
+<p className='bold text-black  font-semibold capitalize'> {data.companyName} </p>
         </div>
         </div> 
 
       
    <div className='px-5 h-72 text-sm'>
-   <p className='bold text-black  font-semibold capitalize'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio assumenda quam officiis repellat ipsa, aperiam aspernatur cupiditate rerum nobis itaque, dignissimos quisquam commodi </p>
+   <p className='bold text-black  font-semibold capitalize'>{data.overView} </p>
 <ul>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>wfh</li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>good package </li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>wfh</li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/></li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.minSalary} lpa -{data.maxSalary} lpa</li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>sample </li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.workType}</li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.workMode}</li>
     
 
 
@@ -41,10 +42,10 @@ function JobCards() {
    </div>
      
       <CardFooter divider className="flex items-center justify-between py-3">
-        <Typography variant="small">date </Typography>
+        <Typography variant="small">{moment(data.timeStamp).format("DD/MM/YYYY h:mm a")} </Typography>
         <Typography variant="small" color="gray" className="flex items-center gap-1">
         <TfiLocationPin/> 
-         location 
+        {data.workLocation}
         </Typography>
       </CardFooter>
     </Card>

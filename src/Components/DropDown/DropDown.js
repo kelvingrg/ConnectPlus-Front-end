@@ -2,10 +2,11 @@ import React from "react";
 import Popper from "popper.js";
 import { CiPower } from "react-icons/ci"
 import { useNavigate } from "react-router-dom";
-import { AiOutlineForm } from "react-icons/ai";
+import { AiOutlineForm ,AiOutlineEdit} from "react-icons/ai";
+import { HiOutlineTrash } from "react-icons/hi";
 
 
- const DropDown = ({ children ,account,jobPost}) => {
+ const DropDown = ({ children ,account,jobPost,OwnJobPost}) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -30,6 +31,7 @@ import { AiOutlineForm } from "react-icons/ai";
                
               style={{ transition: "all .15s ease" }}
               type="button"
+              
               ref={btnDropdownRef}
               onClick={() => {
                 dropdownPopoverShow
@@ -95,7 +97,10 @@ import { AiOutlineForm } from "react-icons/ai";
                   "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b  " 
                   
                 }
-                onClick={e => e.preventDefault()}
+                onClick={e =>{
+                  e.preventDefault()
+                  navigate('/job')
+                 }}
               >
          View Jobs
               </a>
@@ -107,13 +112,60 @@ import { AiOutlineForm } from "react-icons/ai";
                 }
                 onClick={e =>{
                    e.preventDefault()
+                   e.stopPropagation();
                    navigate('/jobPosts')
                   }}
               >
-       <AiOutlineForm size={17}/> Post a Job
+      <AiOutlineForm size={17}/> Post a Job
               </a>
               
             </div>}
+
+
+            { OwnJobPost && <div
+              ref={popoverDropdownRef}
+              className={
+                (dropdownPopoverShow ? "block " : "hidden ") +
+            
+                "text-base z-50   list-none text-left rounded-lg shadow-lg mt-3 border border-zinc-400 "
+              }
+              style={{ minWidth: "8rem" }}
+              onMouseLeave={closeDropdownPopover}
+            >
+              <a
+                href="#pablo"
+                className={
+                  "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
+                  
+                }
+                // onClick={e =>{
+                //   e.preventDefault()
+                //   navigate('/job')
+                //  }}
+              >
+       <AiOutlineEdit size={17}/>  Edit post
+              </a>
+              <a
+                href="#pablo"
+                className={
+                  "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
+                  
+                }
+                onClick={e =>{
+                   e.preventDefault()
+                   e.stopPropagation();
+                   navigate('/jobPosts')
+                  }}
+              >
+       <HiOutlineTrash size={17}/> Deleteb
+              </a>
+              
+            </div>}
+
+
+
+
+
 
 
 

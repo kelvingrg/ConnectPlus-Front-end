@@ -12,12 +12,14 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import CommentBox from '../../CommentBox/CommentBox';
+import { useNavigate } from 'react-router-dom';
 
 function FeedActionBar({data}) {
 const {userData} = useSelector((state)=>state.login)
 const[postData,setPostData]=useState(data)
 const [isLiked,setIsLiked]=useState(true)
 const [commentCount,setCommentCount]=useState()
+const navigate=useNavigate()
 
 //accordion
 const [open, setOpen] = useState(0);
@@ -46,19 +48,40 @@ const handleOpen = (value) => {
     setIsLiked(true)
     axios.get(`/updateLike?userId=${userData?._id}&postId=${postData?._id}`)
     .then((response)=>{
-
-      setPostData(response.data.singlePostData)
-
-    })
+      if (response ?. data ?. loadError) {
+          navigate('/page404')
+      }
+      if (response ?. data ?. singlePostData) {
+       
+          setPostData(response.data.singlePostData)
+       
+      }
+  
+     })
+     .catch((error)=>{
+       localStorage.clear()
+               navigate('/')
+     })
   }
 
     const doUnLike=()=>{
       setIsLiked(false)
       axios.get(`/updateUnLike?userId=${userData._id}&postId=${postData?._id}`)
       .then((response)=>{
-  setPostData(response.data.singlePostData)
-
-      })
+        if (response ?. data ?. loadError) {
+            navigate('/page404')
+        }
+        if (response ?. data ?. singlePostData) {
+         
+            setPostData(response.data.singlePostData)
+         
+        }
+    
+       })
+       .catch((error)=>{
+         localStorage.clear()
+                 navigate('/')
+       })
 }
 
 const handleChildData =(count)=>{

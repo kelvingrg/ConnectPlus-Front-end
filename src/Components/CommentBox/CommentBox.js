@@ -88,7 +88,7 @@ return new Date(b.timeStamp) - new Date(a.timeStamp)}).map((element)=> <div clas
 </div> 
 <div className=' ml-2 bg-gray-100 w-full pt-1 px-3 rounded-lg'>
  <p className="text-lg font-semibold leading-[1.2rem] float-left"> {element.userName}</p>
- <p className="text-xs font-thin leading-[0.8rem] inline float-right pr-3">{moment(element.timeStamp).format("DD/MM/YYYY kk:mm")}</p><br />
+ <p className="text-xs font-thin leading-[0.8rem] inline float-right pr-3">{moment(element.timeStamp).format("DD/MM/YYYY h:mm a")}</p><br />
  {element?.keyrole && <p className=" text-sm font-thin leading-[0.8rem] italic"> {element?.keyrole.map((role)=>role)}</p>}
 
  <p className='font-normal font-serif mt-2'>{element.commentText}</p>

@@ -12,13 +12,15 @@ import JobCards from '../../Components/JobCards/JobCards'
 
 function Job() {
     const {postModal} = useSelector((state) => state ?. modal)
-    const [postData,setPostData]=useState([])
+    const [jobPostData,setJobPostData]=useState([])
   const navigate=useNavigate()
-  let job =[1,1,1,1,1,1]
+
   useEffect(()=>{
-axios.get("/getCasualPostData").then(response=>{
+axios.get("/jobPostData")
+.then(response=>{
+  console.log(response);
   if(response?.data?.dataFetched){
-    setPostData(response?.data?.data)
+    setJobPostData(response?.data?.data)
   }
   if(response?.data?.loadError){
     navigate('/page404')
@@ -26,6 +28,7 @@ axios.get("/getCasualPostData").then(response=>{
 
 })
 .catch((error)=>{
+  console.log(error);
   localStorage.clear()
           navigate('/')
 })
@@ -45,7 +48,7 @@ axios.get("/getCasualPostData").then(response=>{
 
                 {/* center box start */}
                 <div className=' hidden  h-auto  w-3/4 ml-10 md:flex md:flex-wrap justify-evenly  min-h-screen pt-2 '>
-                {job.map(e=><JobCards/>) }
+                {jobPostData.map(element=><JobCards data={element}/>) }
                     
                     
                 </div>
