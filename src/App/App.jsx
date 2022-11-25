@@ -5,6 +5,7 @@ import Auth from "../Auth/Auth";
 import Page404 from "../Pages/404Page/Page404";
 import HomePage from "../Pages/HomePage/HomePage";
 import Job from "../Pages/Job/Job";
+import JobPost from "../Pages/JobPost/JobPost";
 
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
 import Profile from "../Pages/Profile/Profile";
@@ -30,6 +31,7 @@ function App() {
 <Route  path="/home" element={<HomePage/>}  />  
 <Route  path="/profile" element={<Profile/>}  />  
 <Route  path="/job" element={<Job/>}  /> 
+<Route  path="/jobPosts" element={<JobPost/>}  /> 
          
     </Route>
          

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import PostBoxInput from './PostBoxInput'
 import UserRoundDp from './UserRoundDp.js/UserRoundDp'
 
-function PostBox() {
+function PostBox({jobPost}) {
   const {userData}=useSelector(state=>state.login)
   return (
     
@@ -12,7 +12,7 @@ function PostBox() {
         <UserRoundDp image={`images/dp/${userData.dp}`}/>
     </div>
 
-    <div className='grow ml-5 '> <PostBoxInput/> </div>
+    <div className='grow ml-5 '> <PostBoxInput jobPost={jobPost}/> </div>
     </div>
   )
 }

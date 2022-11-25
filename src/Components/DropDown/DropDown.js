@@ -105,7 +105,10 @@ import { AiOutlineForm } from "react-icons/ai";
                   "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
                   
                 }
-                onClick={e => e.preventDefault()}
+                onClick={e =>{
+                   e.preventDefault()
+                   navigate('/jobPosts')
+                  }}
               >
        <AiOutlineForm size={17}/> Post a Job
               </a>
