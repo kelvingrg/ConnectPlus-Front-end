@@ -2,6 +2,9 @@ import React from "react";
 import Popper from "popper.js";
 import { CiPower } from "react-icons/ci"
 import { useNavigate } from "react-router-dom";
+import { AiOutlineForm } from "react-icons/ai";
+
+
  const DropDown = ({ children ,account,jobPost}) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -62,15 +65,17 @@ import { useNavigate } from "react-router-dom";
               <a
                 href="#pablo"
                 className={
-                  "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex " 
+                  "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
                   
                 }
-                onClick={e =>{ e.preventDefault()
+                onClick={e =>{
+                   e.preventDefault()
                     localStorage.clear()
                 navigate('/')}
                 }
               >
-        <CiPower size={17} /> &nbsp; Logout
+        <CiPower size={17} /> 
+        Logout
               </a>
               
             </div>}
@@ -97,12 +102,12 @@ import { useNavigate } from "react-router-dom";
               <a
                 href="#pablo"
                 className={
-                  "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b  " 
+                  "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
                   
                 }
                 onClick={e => e.preventDefault()}
               >
-        Post a Job
+       <AiOutlineForm size={17}/> Post a Job
               </a>
               
             </div>}

@@ -6,7 +6,10 @@ function LoginAuthorisation() {
     console.log(token ,"token at authorisation file ")
     console.log(token,"token")
     return (
-    token?<Navigate to="/home"/>:<Navigate to="/"/>
+      ( token === "" || token === null || token === undefined) ?
+    
+      <Outlet/>:<Navigate to="/home"/>
+ 
     )
   }
 

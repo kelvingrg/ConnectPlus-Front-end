@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CButton } from '../../Button/CButton'
 import './LoginModal.css'
 import { HiXMark } from "react-icons/hi2";
@@ -14,9 +14,11 @@ import { useNavigate } from 'react-router-dom';
 function ModalTest() {
   // const [userName,setUserName]=useState('')
   // const [password, setPassword]=useState('')
+
   const navigate=useNavigate()
 
   const {email, password,invalidCred,userLogin}=useSelector((state)=>state?.login)
+
   const dispatch=useDispatch()
   const handleSubmit=(e)=>{
 e.preventDefault()

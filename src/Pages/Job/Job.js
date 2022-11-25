@@ -8,11 +8,13 @@ import ProfileBox from '../../Components/ProfileBox/ProfileBox'
 import Feeds from '../../Components/Feeds/Feeds'
 import axios from '../../Config/Axios'
 import { useNavigate } from 'react-router-dom';
+import JobCards from '../../Components/JobCards/JobCards'
 
 function Job() {
     const {postModal} = useSelector((state) => state ?. modal)
     const [postData,setPostData]=useState([])
   const navigate=useNavigate()
+  let job =[1,1,1,1,1,1]
   useEffect(()=>{
 axios.get("/getCasualPostData").then(response=>{
   if(response?.data?.dataFetched){
@@ -28,11 +30,12 @@ axios.get("/getCasualPostData").then(response=>{
           navigate('/')
 })
   },[])
-    return (
+    return (<>
 
-        <div className='parent bg-ccLight h-fit'>
+        <div className='parent bg-ccLight h-fit min-h-screen'>
             <HomeNavbar/>
-            <div className='flex pt-20  pl-10  '> {/* left box start  */}
+            <div className='flex pt-20  px-10 '>
+                 {/* left box start  */}
                 <div className=' w-1/5 h-auto hidden md:block '>
                     <div className='w-1/5 fixed '>
                         <ProfileBox/>
@@ -41,9 +44,8 @@ axios.get("/getCasualPostData").then(response=>{
                 {/* left box end  */}
 
                 {/* center box start */}
-                <div className=' items-center w-full md:w-[65%] h-auto block pl-16'>
-                  
-                    {postData.map((element)=><Feeds data={element}/>)}
+                <div className=' hidden  h-auto  w-3/4 ml-10 md:flex md:flex-wrap justify-evenly  min-h-screen pt-2 '>
+                {job.map(e=><JobCards/>) }
                     
                     
                 </div>
@@ -57,7 +59,9 @@ axios.get("/getCasualPostData").then(response=>{
                 </div> */}
                 {/* right box end */} </div>
         </div>
-     )
+        {
+        postModal && <CasualPostModal/>
+    } </>)
 }
 
 export default Job

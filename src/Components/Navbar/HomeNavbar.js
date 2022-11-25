@@ -1,6 +1,6 @@
 import Connect_plus from  '../../Assets/Connect_plus.png'
 import React,{useState} from 'react';
- import  background from'../../Assets/landingPageImage.png'
+
 import { useDispatch } from 'react-redux';
 import { AiOutlineHome,AiOutlineUsergroupAdd,AiOutlineMessage } from "react-icons/ai";
 import { GrGroup } from "react-icons/gr";
@@ -8,12 +8,15 @@ import { BsBriefcase } from "react-icons/bs";
 import { TfiBell } from "react-icons/tfi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
+import DropDown from '../DropDown/DropDown';
+
 
 
 
 
 
 export default function HomeNavbar() {
+    
 
   
     const [navbar, setNavbar] = useState(false); 
@@ -83,10 +86,12 @@ export default function HomeNavbar() {
                                
                                 <div className='hidden md:contents'> <AiOutlineUsergroupAdd size={17}/></div> Connections
                                 </li>
-                                <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
+                                <DropDown jobPost={true}>
+                                   <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
                                 <div className='hidden md:contents'> <BsBriefcase size={17}/> </div> Jobs
-                                                </li>
+                                                </li></DropDown>
+   
                                                 <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
                                                 <div className='hidden md:contents'>  <TfiBell size={17}/></div>Notifications
@@ -95,11 +100,17 @@ export default function HomeNavbar() {
                                
                                                      <div className='hidden md:contents'><AiOutlineMessage size={17}/></div>Messages
                                                      </li>
+                                                    
+                                                    <DropDown account={true}>
+                                              
                                                      <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
                                                      <div className='hidden md:contents'> <FaRegUserCircle size={17}/></div>Account
                                                   
                                                      </li>
+                                                     </DropDown>
+      
+
                                
                               
                             </ul>
