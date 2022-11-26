@@ -9,6 +9,7 @@ import { TfiBell } from "react-icons/tfi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import DropDown from '../DropDown/DropDown';
+import { Link } from 'react-router-dom';
 
 
 
@@ -79,12 +80,12 @@ export default function HomeNavbar() {
                             }`} >
                             <ul className="items-center justify-center space-y-8 lg:space-x-3 md:space-x-2 md:flex  md:space-y-0 text-center text-blue-800">
                                 <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange md:px-2   flex  md:flex-col items-center justify-center  text-xs hover:scale-110">
-                             <div className='hidden md:contents'>   <AiOutlineHome size={17} /></div>Home
+                          <Link to='/home'>   <div className='hidden  md:flex md:flex-col items-center justify-center '>   <AiOutlineHome size={17} /></div>Home</Link>
                                   
                                 </li>
                                 <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
-                                <div className='hidden md:contents'> <AiOutlineUsergroupAdd size={17}/></div> Connections
+                                <div className='hidden md:contents '> <AiOutlineUsergroupAdd size={17}/></div> Connections
                                 </li>
                                 <DropDown jobPost={true}>
                                    <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
@@ -101,14 +102,14 @@ export default function HomeNavbar() {
                                                      <div className='hidden md:contents'><AiOutlineMessage size={17}/></div>Messages
                                                      </li>
                                                     
-                                                    <DropDown account={true}>
+                                                 
                                               
                                                      <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
-                               
-                                                     <div className='hidden md:contents'> <FaRegUserCircle size={17}/></div>Account
-                                                  
-                                                     </li>
+                                                     <DropDown account={true}>
+                                                     <div className='hidden md:flex  md:flex-col items-center justify-center'> <FaRegUserCircle size={17}/></div>Account
                                                      </DropDown>
+                                                     </li>
+                                                    
       
 
                                

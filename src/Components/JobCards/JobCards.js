@@ -13,14 +13,14 @@ import {
   import en from 'javascript-time-ago/locale/en.json'
   import ru from 'javascript-time-ago/locale/ru.json'
   import TimeAgo from 'javascript-time-ago'
+import { useDispatch } from 'react-redux';
   TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
 
 function JobCards({data}) {
-//   TimeAgo.addDefaultLocale(en)
-// TimeAgo.addLocale(ru)
+const dispatch=useDispatch()
   return (
-    <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3">
+    <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3" onClick={()=>{dispatch(setDetailedSingleJobPostData(data))}}>
     
       <div className='flex p-3 pt-4'>
       <img
