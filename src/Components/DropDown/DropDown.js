@@ -4,14 +4,22 @@ import { CiPower } from "react-icons/ci"
 import { useNavigate } from "react-router-dom";
 import { AiOutlineForm ,AiOutlineEdit} from "react-icons/ai";
 import { HiOutlineTrash } from "react-icons/hi";
+import { setJobPostEditModalState } from "../../App/ReduxHandlers/ModalSlice";
+import { useDispatch, useSelector } from "react-redux"
+import Swal from "sweetalert2";
+import axios from "../../Config/Axios";
+import { setSingleJobPostData } from "../../App/ReduxHandlers/TempDataReducer";
 
 
- const DropDown = ({ children ,account,jobPost,OwnJobPost}) => {
+
+ const DropDown = ({ children ,account,jobPost,OwnJobPost}) => {   
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const navigate =useNavigate()
+  const dispatch=useDispatch()
+  const {singleJobPostData}=useSelector((state)=>state?.tempData)
   const openDropdownPopover = () => {
     new Popper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start"
@@ -138,10 +146,7 @@ import { HiOutlineTrash } from "react-icons/hi";
                   "text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" 
                   
                 }
-                // onClick={e =>{
-                //   e.preventDefault()
-                //   navigate('/job')
-                //  }}
+                onClick={() =>dispatch(setJobPostEditModalState(true))}
               >
        <AiOutlineEdit size={17}/>  Edit post
               </a>
@@ -154,10 +159,45 @@ import { HiOutlineTrash } from "react-icons/hi";
                 onClick={e =>{
                    e.preventDefault()
                    e.stopPropagation();
-                   navigate('/jobPosts')
+                   Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      axios.get(`/deleteTheJobPost?postId=${singleJobPostData._id}`)
+                      .then((response)=>{
+                        if (response ?. data ?. loadError) {
+                            navigate('/page404')
+                        }
+                        if (response ?. data ?. removePost) {
+                            console.log(response,"iresponse of userAboutSessionUpdate ")
+                            dispatch(setSingleJobPostData({}))
+                        
+                        }
+                    
+                       })
+                       .catch((error)=>{
+                         localStorage.clear()
+                                 navigate('/')
+                       })
+                
+                      
+                      
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
                   }}
               >
-       <HiOutlineTrash size={17}/> Deleteb
+       <HiOutlineTrash size={17}/> Delete
               </a>
               
             </div>}

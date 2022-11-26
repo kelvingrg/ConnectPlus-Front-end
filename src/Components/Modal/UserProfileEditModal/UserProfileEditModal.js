@@ -24,7 +24,7 @@ export default function UserProfileEditModal(props) {
   }=useSelector((state)=>state.modal)
 
   return (
-    <>
+   
     
   
         <>
@@ -61,7 +61,7 @@ export default function UserProfileEditModal(props) {
             </div>
           </div>
           
-        </>
+       
     
     </>
   );

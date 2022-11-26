@@ -7,13 +7,15 @@ import {
 import { CButton } from '../../Components/Button/CButton'
 import PostBox from '../../Components/PostBox/PostBox'
 import Feeds from '../../Components/Feeds/Feeds'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import axios from '../../Config/Axios'
 import { useNavigate } from 'react-router-dom';
+import { setSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
 
 function AddJobClickBox() {
 
     const {userData}=useSelector(state=>state?.login)
+    const dispatch=useDispatch()
   
     const navigate=useNavigate()
   const [open, setOpen]=useState() 
@@ -72,11 +74,9 @@ function AddJobClickBox() {
           }
           if (response ?. data ?. upload) {
               console.log(response,"iresponse of userAboutSessionUpdate ")
-              // to set new useradata
-              // dispatch(setUserData(response.data.userData))
-              // localStorage.setItem("userData",response.data.userData)
-              // // modal close
-              //  dispatch(setUserAboutSessionModalState(false))
+               dispatch(setSingleJobPostData({}))
+               handleOpen(!open)
+             
           }
       
          })

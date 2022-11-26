@@ -2,43 +2,68 @@ import React, { useState } from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import DropDown from '../DropDown/DropDown';
 import { AiFillCaretRight } from "react-icons/ai";
+import { useDispatch, useSelector } from 'react-redux';
+import JobPostEditModal from '../Modal/JobPostEditModal/JobPostEditModal';
+import { setSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
+import { CButton } from '../Button/CButton';
 
-function OwnJobPost() {
-    const [viewFull,setViewFull]=useState(false)
+
+
+function OwnJobPost({singleJobPostData}) {
+
+    const {jobPostEditModalState}=useSelector(state=>state?.modal)
+    const dispatch=useDispatch()
+  
+    
   return (
-     <div className={`bg-ccLight bg-transparent-[20%] rounded-lg border-zinc-400 px-5  ${viewFull?" h-fit":" overflow-y-hidden h-56 "}  `} > 
+    <>
+     <div className={`bg-ccLight bg-transparent-[20%] rounded-lg border-zinc-400 px-5 h-fit mt-3  `} > 
     <div className='w-full py-3 ' >
-       <span className='float-right py-3'> <DropDown OwnJobPost={true}> <BsThreeDotsVertical  />
+     
+       <span className='float-right py-3' onClick={()=>dispatch(setSingleJobPostData(singleJobPostData))}> <DropDown OwnJobPost={true} > <BsThreeDotsVertical  />
 </DropDown></span> 
-<div className='flex space-x-5 ' onClick={()=>setViewFull(!viewFull)}>
+<div className='flex space-x-5 ' >
 <img
 className='w-20 h-20 ' 
-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI12eCBhM3pMFgCVeiEG3aGko1jTs2-hFCpg&usqp=CAU"
- alt="" />
+src={`jobPosts/CompanyLogo/${singleJobPostData.companyLogo}`}
+ />
 
  <div className='felx-1  '>
- <p className='bold text-black font-bold text-lg capitalize float'>designation </p>
-<p className='bold text-black  font-semibold capitalize'> companyName </p>
+ <p className='bold text-black font-bold text-lg capitalize float'>{singleJobPostData.designation} </p>
+<p className='bold text-black  font-semibold capitalize'> {singleJobPostData.companyName} </p>
+<p className='bold text-black  font-thin italic '> {singleJobPostData.timeStamp}</p>
  </div>
+ <div className=' grow flex justify-end'>
+ <span className=' py-3 mr-10'><CButton text={"View Candidates"}/> </span>
+ </div>
+
 </div>
-<p className='bold text-black  font-semibold capitalize'> create mode 100644 public/posts/files/1669023308859-Connect plus.jpg
- create mode 100644 public/posts/files/1669293299690-ellipsis.png </p>
+<p className='bold text-black  font-semibold capitalize'> {singleJobPostData.overView} </p>
 
  <ul>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>xfvxdfv</li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>sample </li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>xfgbcv </li>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>xcbfxcv </li>
+    <li className='flex items-center gap-2 capitalize space-x-2'><AiFillCaretRight/>{singleJobPostData.minSalary} lpa  - {singleJobPostData.maxSalary} lpa</li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{singleJobPostData.workMode} </li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{singleJobPostData.workType} </li>
+    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{singleJobPostData.maxSalary} </li>
     
 
 
 </ul>
+<p className='bold text-black  font-normal capitalize'>{singleJobPostData.companyLogo} </p>
 
 </div>
 
 
     
     </div>
+
+
+    {jobPostEditModalState && <JobPostEditModal singleJobPostData={singleJobPostData} />} 
+     {/* data={element} */}
+    </>
+
+
+
   )
 }
 

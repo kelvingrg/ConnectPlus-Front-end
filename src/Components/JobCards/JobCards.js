@@ -9,8 +9,16 @@ import {
   import { TfiLocationPin } from "react-icons/tfi";
   import { AiFillCaretRight } from "react-icons/ai";
   import moment from 'moment'
+  import ReactTimeAgo from 'react-time-ago'
+  import en from 'javascript-time-ago/locale/en.json'
+  import ru from 'javascript-time-ago/locale/ru.json'
+  import TimeAgo from 'javascript-time-ago'
+  TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(ru)
 
 function JobCards({data}) {
+//   TimeAgo.addDefaultLocale(en)
+// TimeAgo.addLocale(ru)
   return (
     <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3">
     
@@ -42,7 +50,8 @@ function JobCards({data}) {
    </div>
      
       <CardFooter divider className="flex items-center justify-between py-3">
-        <Typography variant="small">{moment(data.timeStamp).format("DD/MM/YYYY h:mm a")} </Typography>
+        <Typography variant="small"><ReactTimeAgo date={data.timeStamp}  locale="en-US"/> </Typography>  
+        {/* {moment(data.timeStamp).format("DD/MM/YYYY h:mm a")} */}
         <Typography variant="small" color="gray" className="flex items-center gap-1">
         <TfiLocationPin/> 
         {data.workLocation}
