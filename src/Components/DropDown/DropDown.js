@@ -32,9 +32,9 @@ import { setSingleJobPostData } from "../../App/ReduxHandlers/TempDataReducer";
 
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap z-50 overflow-visible ">
         <div className="">
-          <div className="relative inline-flex align-middle w-full">
+          <div className="relative inline-flex align-middle w-full overflow-visible">
             <button
                
               style={{ transition: "all .15s ease" }}

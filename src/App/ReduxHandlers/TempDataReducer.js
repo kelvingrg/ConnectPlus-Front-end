@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const INITIAL_STATE={
    singleJobPostData:{},
-   detailedSingleJobPostData:{}
+   detailedSingleJobPostData:{} ,
 
 
    
@@ -19,7 +19,7 @@ const tempData=createSlice({
 })
 export const {
     setSingleJobPostData,
-    setDetailedSingleJobPostData,
+    setDetailedSingleJobPostData ,
 
 }=tempData.actions
 export default tempData.reducer

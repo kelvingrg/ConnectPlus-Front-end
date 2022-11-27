@@ -14,13 +14,19 @@ import {
   import ru from 'javascript-time-ago/locale/ru.json'
   import TimeAgo from 'javascript-time-ago'
 import { useDispatch } from 'react-redux';
+import { setDetailedSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
+import {  useNavigate } from 'react-router-dom';
   TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
 
 function JobCards({data}) {
 const dispatch=useDispatch()
+const navigate =useNavigate()
   return (
-    <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3" onClick={()=>{dispatch(setDetailedSingleJobPostData(data))}}>
+    <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3" onClick={()=>{
+      navigate('/detailedJobPostView')
+      navigate(`/detailedJobPostView/${data._id}`, { state: data  });
+    }}>
     
       <div className='flex p-3 pt-4'>
       <img
@@ -38,7 +44,7 @@ const dispatch=useDispatch()
    <div className='px-5 h-72 text-sm'>
    <p className='bold text-black  font-semibold capitalize'>{data.overView} </p>
 <ul>
-    <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.minSalary} lpa -{data.maxSalary} lpa</li>
+    <li className='flex items-center gap-2 capitalize space-x-2'><AiFillCaretRight/>{data.minSalary} lpa -{data.maxSalary} lpa</li>
     <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>sample </li>
     <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.workType}</li>
     <li className='flex items-center gap-2 capitalize'><AiFillCaretRight/>{data.workMode}</li>
