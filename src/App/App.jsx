@@ -10,6 +10,7 @@ import JobPost from "../Pages/JobPost/JobPost";
 
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
 import Profile from "../Pages/Profile/Profile";
+import UserProfileViewByOthersPage from "../Pages/UserProfileViewByOthersPage/UserProfileViewByOthersPage";
 import Authorisation from "./Authorisation";
 import LoginAuthorisation from "./LoginAuthorisation";
 
@@ -35,6 +36,7 @@ function App() {
 <Route  path="/jobPosts" element={<JobPost/>}  /> 
 
 <Route  path="/detailedJobPostView/:id" element={<DetailedJobPostView/>}  /> 
+<Route  path="/UserProfileViewByOthersPage/:id" element={<UserProfileViewByOthersPage/>}  /> 
          
          
     </Route>

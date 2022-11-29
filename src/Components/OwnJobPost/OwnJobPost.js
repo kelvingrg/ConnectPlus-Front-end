@@ -4,15 +4,35 @@ import DropDown from '../DropDown/DropDown';
 import { AiFillCaretRight } from "react-icons/ai";
 import { useDispatch, useSelector } from 'react-redux';
 import JobPostEditModal from '../Modal/JobPostEditModal/JobPostEditModal';
-import { setSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
+import { setAllAppliedCandidateData, setSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
 import { CButton } from '../Button/CButton';
+import axios from '../../Config/Axios'
+import { useNavigate } from 'react-router-dom';
 
 
 
-function OwnJobPost({singleJobPostData}) {
-
+function OwnJobPost({singleJobPostData,setCandidates}) {
+    const navigate =useNavigate();
     const {jobPostEditModalState}=useSelector(state=>state?.modal)
+  
     const dispatch=useDispatch()
+    const getAppliedCandidatesData=()=>{
+      (axios.get(`/getCandidateDataOfJobApplied?postId=${
+        singleJobPostData ?. _id
+        }`).then((response) => {
+            console.log(response, "respojse at own job post  ");
+            if (response ?. data ?. loadError) {
+               // navigate('/page404')
+            }
+            if (response ?. data ?. dataFetched) { 
+             dispatch(setSingleJobPostData(response ?. data ?. response))
+            }
+
+        }).catch((error) => {
+            localStorage.clear()
+            navigate('/')
+        }))
+    }
   
     
   return (
@@ -34,7 +54,7 @@ src={`jobPosts/CompanyLogo/${singleJobPostData.companyLogo}`}
 <p className='bold text-black  font-thin italic '> {singleJobPostData.timeStamp}</p>
  </div>
  <div className=' grow flex justify-end'>
- <span className=' py-3 mr-10'><CButton text={"View Candidates"}/> </span>
+ <span className=' py-3 mr-10' onClick={getAppliedCandidatesData}><CButton text={"View Candidates"}/> </span>
  </div>
 
 </div>

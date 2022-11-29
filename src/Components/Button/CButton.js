@@ -2,6 +2,6 @@ import React from 'react'
 
 export const CButton = ({children,text}) => {
   return (
-    <button className=' box-border rounded-full px-5 py-1 border-ccOrange text-black hover:bg-ccOrange border-2 hover:border-black hover:scale-110'> {text} {children}</button>
+    <button className=' box-border rounded-full px-4 py-1 border-ccOrange text-black active:bg-ccOrange border-2 active:border-black  text-sm font-medium flex items-center space-x-2 justify-center'>{text && <span>{text}</span>}<span className='flex items-center mt-1 '>{children}</span>  </button>
   )
 }

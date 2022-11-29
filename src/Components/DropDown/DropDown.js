@@ -22,8 +22,10 @@ import { setSingleJobPostData } from "../../App/ReduxHandlers/TempDataReducer";
   const {singleJobPostData}=useSelector((state)=>state?.tempData)
   const openDropdownPopover = () => {
     new Popper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start"
+   placement:"bottom-start"
     });
+
+
     setDropdownPopoverShow(true);
   };
   const closeDropdownPopover = () => {
@@ -32,7 +34,7 @@ import { setSingleJobPostData } from "../../App/ReduxHandlers/TempDataReducer";
 
   return (
     <>
-      <div className="flex flex-wrap z-50 overflow-visible ">
+      <div className="flex ">
         <div className="">
           <div className="relative inline-flex align-middle w-full overflow-visible">
             <button
@@ -57,7 +59,7 @@ import { setSingleJobPostData } from "../../App/ReduxHandlers/TempDataReducer";
               className={
                 (dropdownPopoverShow ? "block " : "hidden ") +
             
-                "text-base z-50  float-right  list-none text-left rounded-lg shadow-lg mt-3 border border-zinc-400  "
+                "text-base z-50  float-right  list-none text-left rounded-lg shadow-lg mt-3 border border-zinc-400  pr-40"
               }
               style={{ minWidth: "8rem" }}
               onMouseLeave={closeDropdownPopover}

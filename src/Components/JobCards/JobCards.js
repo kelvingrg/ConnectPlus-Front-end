@@ -13,7 +13,7 @@ import {
   import en from 'javascript-time-ago/locale/en.json'
   import ru from 'javascript-time-ago/locale/ru.json'
   import TimeAgo from 'javascript-time-ago'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDetailedSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer';
 import {  useNavigate } from 'react-router-dom';
   TimeAgo.addDefaultLocale(en)
@@ -22,11 +22,14 @@ TimeAgo.addLocale(ru)
 function JobCards({data}) {
 const dispatch=useDispatch()
 const navigate =useNavigate()
+
   return (
     <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3" onClick={()=>{
-      navigate('/detailedJobPostView')
+    
       navigate(`/detailedJobPostView/${data._id}`, { state: data  });
     }}>
+
+    
     
       <div className='flex p-3 pt-4'>
       <img
@@ -58,7 +61,7 @@ const navigate =useNavigate()
       <CardFooter divider className="flex items-center justify-between py-3">
         <Typography variant="small"><ReactTimeAgo date={data.timeStamp}  locale="en-US"/> </Typography>  
         {/* {moment(data.timeStamp).format("DD/MM/YYYY h:mm a")} */}
-        <Typography variant="small" color="gray" className="flex items-center gap-1">
+        <Typography variant="small" color="gray" className="flex items-center gap-1">  <button>Apply</button>
         <TfiLocationPin/> 
         {data.workLocation}
         </Typography>

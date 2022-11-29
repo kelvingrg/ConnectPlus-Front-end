@@ -9,6 +9,8 @@ import { useLocation } from "react-router-dom";
 import Swal from 'sweetalert2';
 import AppliedCandidates from '../../Components/AppliedCandidates/AppliedCandidates';
 import './DetailedJobPostView.css'
+import { GrReturn } from 'react-icons/gr';
+
 
 
 
@@ -17,6 +19,7 @@ function DetailedJobPostView() {
      let { id } = useParams();// here the passes id as params will collect from path  
         const location = useLocation();
         const [data,setData]=useState(location?.state);
+        const [ checkAppliedOrNot , setCheckAppliedOrNot]=useState(false)
        // console.log(data,"data",id,"postId");
      const navigate=useNavigate()
 
@@ -25,11 +28,11 @@ function DetailedJobPostView() {
     // const [viewFull,setViewFull]=useState(false)
     // const [jobPostData, setJobPostData]=useState([])
     useEffect(()=>{
-if(location?.state){
-    // console.log(location.state,"inside use effect location . state ");
-    setData(location?.state)
-}
-else{
+// if(!location?.state){
+//     // console.log(location.state,"inside use effect location . state ");
+//     setData(location?.state)
+// }
+// else{
     // console.log(location.state,"inside use effect location . state ");
     axios.get(`getDataForDetailedJobPostView?postId=${id}`)
     .then((response)=>{
@@ -37,9 +40,11 @@ else{
             navigate('/page404')
         }
         if (response ?. data ?. dataFetched) {
-            // console.log(response.data,"iresponse of userAboutSessionUpdate ")
+
            setData(response?.data?.response)
-           console.log(data,'data at inside response ');
+           setCheckAppliedOrNot(  data?.appliedCandidates?.some(el => el.userId === userData._id))
+
+
         }
     
        })
@@ -47,11 +52,13 @@ else{
          localStorage.clear()
                  navigate('/')
        })
-}
+// }
       
 
             },[ ])
-            console.log(data,'data atoutside response ')
+         
+
+         
 
     return (
     <>
@@ -80,13 +87,15 @@ else{
 <p className='bold text-black  font-semibold capitalize'> {data?.companyName} </p>
         </div>
         <div className='flex justify-end grow'>
-           <span className='pr-10' onClick={
-            ()=>{
+       {  !(data?.userId==userData._id) && <span className='pr-10' onClick={
+           ()=>{
                
-                
-                if(userData.resume){
+                if(!checkAppliedOrNot )
+             {  
+                 if(userData.resume){
                     axios.post('/applyForAJob',{userId:userData._id,jobPostId:data._id})
-                }else{
+                }else
+                {
                     Swal.fire({
                         title: 'Are you sure to continue without CV ?',
                         text: "Candidtes with updated  cv has the higer chance to get short listed by the employer ",
@@ -97,16 +106,22 @@ else{
                         confirmButtonText: 'Apply'
                       }).then((result) => {
                         if (result.isConfirmed) {
+                            let userid={userId:userData.userId}
+                            setData({...data,appliedCandidates : [...data.appliedCandidates,userid]})
+                            setCheckAppliedOrNot(  data?.appliedCandidates?.some(el => el.userId === userData._id))
+                            
+                                    
+                     
                             axios.post('/applyForAJob',{userId:userData._id,jobPostId:data._id})
                         }
                       })
-                 
+                  }
                 }
               
             }
            } 
-           
-           ><CButton text={"Apply"}/></span>
+           ><CButton text={checkAppliedOrNot?"Applied":"Apply"}/></span>}
+
         </div> 
         </div> 
         <ul className=' mt-5 pl-3'>

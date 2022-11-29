@@ -7,7 +7,7 @@ import SkillProgressBar from '../SkillProgressBar/SkillProgressBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserSkillUpdateModalState } from '../../../App/ReduxHandlers/ModalSlice';
 
-function SkillSession()  {
+function SkillSession({viewUserData})  {
   const {userData}=useSelector((state)=>state?.login)
   useEffect(()=>{},[userData])
   const dispatch=useDispatch()
@@ -16,11 +16,11 @@ function SkillSession()  {
       {/* skillset hrading box start */}
       <div className=' flex justify-between '>
       <h3 className='font-bold text-xl '>Skills</h3>
-      <span className=' float-right pr-5 '>
+      {!viewUserData && <span className=' float-right pr-5 '>
   <CPIcon tippyPlacement="bottom" tippyContent="Edit ">
   <span className='rounded-full' onClick={()=>dispatch(setUserSkillUpdateModalState(true))}><AiOutlineEdit size={20}/></span>
   </CPIcon>
-  </span>
+  </span>}
   </div>
    {/* skillset hrading box end  */}
 
@@ -29,7 +29,7 @@ function SkillSession()  {
   <div className=' border-b border-t py-2'>
 {/* map will write here */}
 
-{userData?.skills?.map((element)=>
+{viewUserData ? viewUserData?.skills: userData?.skills?.map((element)=>
     <div className='flex items-center justify-between w-full '>
 <div className='flex items-center'><BiRightArrow size={15}/> &nbsp;<p>  {element.skillName}</p> </div>
 <div className='w-[80%] px-auto ml-10 '><SkillProgressBar progress={element.percentage}/>

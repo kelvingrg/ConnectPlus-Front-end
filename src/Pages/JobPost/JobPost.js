@@ -6,16 +6,20 @@ import OwnJobPost from '../../Components/OwnJobPost/OwnJobPost'
 
 import axios from '../../Config/Axios';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import AppliedCandidates from '../../Components/AppliedCandidates/AppliedCandidates'
+import { setAllJobPostData, setSingleJobPostData } from '../../App/ReduxHandlers/TempDataReducer'
 
 
 
 function Job() {
-    const {singleJobPostData}=useSelector((state)=>state.tempData)
+    const {singleJobPostData,allJobPostData}=useSelector((state)=>state.tempData)
     const {userData}=useSelector(state=>state?.login)
+    const {overFlow}=useSelector(state=>state?.tempData)
   const navigate=useNavigate()
-    const [viewFull,setViewFull]=useState(false)
-    const [jobPostData, setJobPostData]=useState([])
+    const dispatch=useDispatch()
+
+   
     useEffect(()=>{
         axios.get(`/ownJobPostData?userId=${userData._id}`)
         .then((response)=>{
@@ -25,8 +29,10 @@ function Job() {
           }
           if (response ?. data ?. dataFetched) {
               console.log(response,"iresponse of own jiob post data ")
-         
-              setJobPostData(response?.data?.data)
+              dispatch(setAllJobPostData(response?.data?.data))
+            //  dispatch(setSingleJobPostData(response?.data?.data[0]))
+              
+              console.log(response);
           }
         
          })
@@ -35,9 +41,10 @@ function Job() {
                    navigate('/')
          })
         
-            },[  singleJobPostData])
+            },[ ])
+           
 
-
+        
     return (<>
 
         <div className='parent bg-ccLight h-fit min-h-screen '>
@@ -56,16 +63,17 @@ function Job() {
        
                <AddJobClickBox/>
 
-            { jobPostData.map(element=> <OwnJobPost singleJobPostData={element}/> )      }
+            {allJobPostData ? allJobPostData?.map(element=> <OwnJobPost singleJobPostData={element} /> ):"No Job Post "      }
                 </div>
 
                 {/* center box end */}
 
                  {/* right box start */}
-                 <div className=' w-1/5 h-1/2 ml-6 hidden md:block '>
-                    <div className='w-1/5 fixed border border-ccBlack'>
-                        right box
+                 <div className=' w-1/5 h-1/2 ml-6 hidden md:block bg-white'>
+                 <div className={`w-1/5 h-[85%] fixed border border-ccBlack  scrollbar-hidden shadow-lg rounded-lg o m-2  ${overFlow?"overflow-x-scroll":"overflow-x-scroll"}`}>
+                <AppliedCandidates />               
                     </div>
+                    <div></div>
                 </div>
                 {/* right box end */}
              </div>

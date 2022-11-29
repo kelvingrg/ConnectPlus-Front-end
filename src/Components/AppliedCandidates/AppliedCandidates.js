@@ -1,40 +1,54 @@
-import React, { useEffect, useState } from 'react'
-import UserRoundDp from '../PostBox/UserRoundDp.js/UserRoundDp'
+import React, {useEffect, useState} from 'react'
 import SingleAppliedCandidate from './SingleAppliedCandidate/SingleAppliedCandidate'
 
+
 import axios from '../../Config/Axios'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-function AppliedCandidates({data}) {
-    const navigate=useNavigate()
- { data.appliedCandidates.map((element)=><SingleAppliedCandidate singleCandidateData={element}/> )    }
-    const [singleCandidateData,setSingleCandidateData]=useState()
-    useEffect(()=>{
-        console.log("inside use effet of single applied candiadte ")
-        axios.get(`/getCandidateDataOfJobApplied?postId=${data._id}`)
-        .then((response)=>{
+function AppliedCandidates({onViewPage}) {
+    const navigate = useNavigate()
+
+    const {singleJobPostData}=useSelector(state=>state.tempData)
+    const [singleCandidateData, setSingleCandidateData] = useState()
+    const dispatch=useDispatch();
+
+    useEffect(() => {
+       
+        singleJobPostData &&  (axios.get(`/getCandidateDataOfJobApplied?postId=${
+        singleJobPostData ?. _id
+        }`).then((response) => {
+            console.log(response, "respojsne at applied candidates ");
             if (response ?. data ?. loadError) {
-                navigate('/page404')
+               // navigate('/page404')
             }
-            if (response ?. data ?. dataFetched) {
-                 console.log(response.data?.response?.appliedCandidates,"iresponse of userAboutSessionUpdate ")
-                 setSingleCandidateData(response?.data?.response.appliedCandidates)
-              
+            if (response ?. data ?. dataFetched) { 
+             
+                setSingleCandidateData(response ?. data ?. response)
+      
+
+             
+
             }
-        
-           })
-           .catch((error)=>{
-             localStorage.clear()
-                     navigate('/')
-           })
-    },[])
-  return (
-    <div className='bg-white'>
- { singleCandidateData && singleCandidateData?.map((element)=><SingleAppliedCandidate singleCandidateData={element}/> )    }
+
+        }).catch((error) => {
+            localStorage.clear()
+            navigate('/')
+        }))
+    }, [singleJobPostData])
 
 
-    </div>
-  )
+    return (
+
+        <div className='bg-white h-full'>
+
+            {
+       singleCandidateData?.appliedCandidates?.sort(function(a,b){
+              return new Date(b.timeStamp) - new Date(a.timeStamp)}) ?. map((element) =>< SingleAppliedCandidate singleCandidateData = {element} onViewPage={onViewPage} /> )
+        } 
+        </div>
+
+    )
 }
 
 export default AppliedCandidates
