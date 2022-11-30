@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { json, Route,Routes} from  'react-router-dom'
 import Auth from "../Auth/Auth";
 import Page404 from "../Pages/404Page/Page404";
+import Connections from "../Pages/Connections/Connections";
 import DetailedJobPostView from "../Pages/DetailedJobPostView/DetailedJobPostView";
 import HomePage from "../Pages/HomePage/HomePage";
 import Job from "../Pages/Job/Job";
@@ -37,6 +38,7 @@ function App() {
 
 <Route  path="/detailedJobPostView/:id" element={<DetailedJobPostView/>}  /> 
 <Route  path="/UserProfileViewByOthersPage/:id" element={<UserProfileViewByOthersPage/>}  /> 
+<Route  path="/connectionDetails" element={<Connections/>}  /> 
          
          
     </Route>

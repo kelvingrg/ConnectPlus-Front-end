@@ -85,7 +85,7 @@ export default function HomeNavbar() {
                                 </li>
                                 <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
-                                <div className='hidden md:contents '> <AiOutlineUsergroupAdd size={17}/></div> Connections
+                                <Link to='/connectionDetails'>   <div className='hidden  md:flex md:flex-col items-center justify-center '> <AiOutlineUsergroupAdd size={17}/></div> Connections</Link>
                                 </li>
                                 <DropDown jobPost={true}>
                                    <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
