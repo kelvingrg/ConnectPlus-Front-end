@@ -9,7 +9,7 @@ function PostBox({jobPost}) {
     
     <div className=" border border-zinc-400  rounded-lg bg-white  p-3 w-full flex items-center justify-center "> 
     <div className='h-14 w-14'>
-        <UserRoundDp image={`images/dp/${userData.dp}`}/>
+        <UserRoundDp image={`images/dp/${userData?.dp}`}/>
     </div>
 
     <div className='grow ml-5 '> <PostBoxInput jobPost={jobPost}/> </div>

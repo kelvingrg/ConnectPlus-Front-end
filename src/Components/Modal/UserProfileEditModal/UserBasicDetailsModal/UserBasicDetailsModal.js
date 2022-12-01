@@ -87,7 +87,7 @@ function UserBasicDetailsModal() {
 
 
                     {
-                    Object.values(data.keyrole) ?. map((element, index) => <div className='w-full flex  '>
+                 ( data?.keyrole.length >0) &&  Object.values(data?.keyrole) ?. map((element, index) => <div className='w-full flex  '>
                         <input type="text" name='keyRoles' className='border border-zinc-400 w-full rounded-lg pl-5  capitalize flex mb-1' placeholder="Key Roles"
                             id={
                                 `${
@@ -105,13 +105,24 @@ function UserBasicDetailsModal() {
                             <span className=''
                                 onClick={
                                     (e) => {
+
+                                        data?.keyrole?
+
                                         setData({
                                             ...data,
                                             keyrole: {
                                                 ...data.keyrole,
                                                 [Object.values(data.keyrole).length + 1]: ""
                                             }
+                                        }):
+                                        setData({
+                                            ...data,
+                                            keyrole: {
+                                                ...data.keyrole,
+                                                1: ""
+                                            }
                                         })
+
                                     }
                             }>
                                 <BsPlusCircle size={20}/></span>

@@ -23,6 +23,7 @@ function JobCards({data}) {
 const dispatch=useDispatch()
 const navigate =useNavigate()
 
+
   return (
     <Card className="w-80 h-80 rounded-lg shadow-lg border mb-3" onClick={()=>{
     

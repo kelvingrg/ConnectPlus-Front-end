@@ -31,7 +31,7 @@ const handleOpen = (value) => {
 
 
   useEffect(()=>{
-  const liked= postData?.like.includes(userData._id)
+  const liked= postData?.like?.includes(userData?._id)
   // filter((element)=>element.userId===userData._id)
   console.log( liked,"liked", isLiked,"is liked status true")
   console.log(postData,":postData")

@@ -210,7 +210,9 @@ function SignUpModal() {
                    :null }
                    </div>
 
-                   {enterVerifyCode &&
+                   {
+                   enterVerifyCode
+                    &&
                     <div className=' flex items-center'> 
                     <input type="text" 
                      name='verificationCode' 

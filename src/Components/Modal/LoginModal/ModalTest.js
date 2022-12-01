@@ -12,8 +12,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 function ModalTest() {
-  // const [userName,setUserName]=useState('')
-  // const [password, setPassword]=useState('')
 
   const navigate=useNavigate()
 
@@ -23,9 +21,16 @@ function ModalTest() {
   const handleSubmit=(e)=>{
 e.preventDefault()
 console.log(email,password,"username and password")
-dispatch(loginUser({email, password}))
-userLogin && navigate("/home")
+return new Promise((resolve,reject )=>{
+  dispatch(loginUser({email, password}))
+  if(userLogin){
+    navigate("/home")
   }
+}
+)
+
+  }
+ 
   return (
     <div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border ' >
 

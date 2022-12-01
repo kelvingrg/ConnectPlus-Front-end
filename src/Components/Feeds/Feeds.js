@@ -7,6 +7,7 @@ import './Feeds.css'
 
 
 function Feeds({data}) {
+  console.log(data,"data at feeda 10 ");
   
   return (
   
