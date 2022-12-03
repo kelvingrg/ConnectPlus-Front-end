@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { json, Route,Routes} from  'react-router-dom'
 import Auth from "../Auth/Auth";
 import Page404 from "../Pages/404Page/Page404";
+import ChatPage from "../Pages/ChatPage/ChatPage";
 import Connections from "../Pages/Connections/Connections";
 import DetailedJobPostView from "../Pages/DetailedJobPostView/DetailedJobPostView";
 import HomePage from "../Pages/HomePage/HomePage";
@@ -39,6 +40,7 @@ function App() {
 <Route  path="/detailedJobPostView/:id" element={<DetailedJobPostView/>}  /> 
 <Route  path="/UserProfileViewByOthersPage/:id" element={<UserProfileViewByOthersPage/>}  /> 
 <Route  path="/connectionDetails" element={<Connections/>}  /> 
+<Route  path="/chat" element={<ChatPage/>}  /> 
          
          
     </Route>
