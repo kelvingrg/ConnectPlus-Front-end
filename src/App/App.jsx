@@ -11,6 +11,8 @@ import Job from "../Pages/Job/Job";
 import JobPost from "../Pages/JobPost/JobPost";
 
 import { LandingPage } from "../Pages/LandingPage/LandingPage";
+import NewChat from "../Pages/NewChat/NewChat";
+import Notification from "../Pages/Notification/Notification";
 import Profile from "../Pages/Profile/Profile";
 import UserProfileViewByOthersPage from "../Pages/UserProfileViewByOthersPage/UserProfileViewByOthersPage";
 import Authorisation from "./Authorisation";
@@ -41,9 +43,10 @@ function App() {
 <Route  path="/UserProfileViewByOthersPage/:id" element={<UserProfileViewByOthersPage/>}  /> 
 <Route  path="/connectionDetails" element={<Connections/>}  /> 
 <Route  path="/chat" element={<ChatPage/>}  /> 
-         
-         
-    </Route>
+<Route  path="/newchat" element={<NewChat/>}  /> 
+<Route  path="/notification" element={<Notification/>}  /> 
+  
+  </Route>
          
 </Routes>
   

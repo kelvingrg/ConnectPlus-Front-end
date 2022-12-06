@@ -94,12 +94,14 @@ export default function HomeNavbar() {
                                                 </li></DropDown>
    
                                                 <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
-                               
-                                                <div className='hidden md:contents'>  <TfiBell size={17}/></div>Notifications
+                                                
+                                                
+                                                <Link to='/notification'>   <div className='hidden  md:flex md:flex-col items-center justify-center '> <TfiBell size={17}/></div>Notifications</Link>
                                                      </li>
                                                      <li className="text-white hover:text-ccOrange  rounded-none hover:border-b-2 hover:border-b-ccOrange px-2   flex  md:flex-col items-center justify-center text-xs hover:scale-110">
                                
-                                                     <div className='hidden md:contents'><AiOutlineMessage size={17}/></div>Messages
+                                                     <Link to='/newchat'>   <div className='hidden  md:flex md:flex-col items-center justify-center '> <AiOutlineMessage size={17}/></div>Messages</Link>
+                                                
                                                      </li>
                                                     
                                                  

@@ -46,8 +46,9 @@ const handleOpen = (value) => {
 
   const doLike=()=>{
     setIsLiked(true)
-    axios.get(`/updateLike?userId=${userData?._id}&postId=${postData?._id}`)
+    axios.get(`/updateLike?userId=${userData?._id}&postId=${postData?._id}&postedById=${postData?.postedBy}`)
     .then((response)=>{
+      console.log(response,"response after like ");
       if (response ?. data ?. loadError) {
           navigate('/page404')
       }

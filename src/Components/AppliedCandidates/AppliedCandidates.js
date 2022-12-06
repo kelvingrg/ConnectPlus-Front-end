@@ -14,13 +14,13 @@ function AppliedCandidates({onViewPage}) {
     const dispatch=useDispatch();
 
     useEffect(() => {
-       
-        singleJobPostData &&  (axios.get(`/getCandidateDataOfJobApplied?postId=${
+    
+       Object.values(singleJobPostData).length> 0    &&  (axios.get(`/getCandidateDataOfJobApplied?postId=${
         singleJobPostData ?. _id
         }`).then((response) => {
-            console.log(response, "respojsne at applied candidates ");
+            // console.log(response, "respojsne at applied candidates ");
             if (response ?. data ?. loadError) {
-               // navigate('/page404')
+              navigate('/page404')
             }
             if (response ?. data ?. dataFetched) { 
              
