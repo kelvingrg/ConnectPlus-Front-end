@@ -8,6 +8,7 @@ import { setAllJobPostData, setSingleJobPostData } from '../../App/ReduxHandlers
 import { BiArrowToTop,BiArrowToBottom } from "react-icons/bi"
 import ConnectionReqSingle from '../../Components/ConnectionReqSingle/ConnectionReqSingle'
 import ConnectionSuggSingle from '../../Components/ConnectionSuggSingle/ConnectionSuggSingle'
+import ConnectedUsers from '../../Components/ConnectedUsers/ConnectedUsers';
 
 
 
@@ -143,8 +144,8 @@ function Connections() {
 
                  {/* right box start */}
                  <div className=' w-1/5 h-1/2 ml-6 hidden md:block bg-white'>
-                 <div className={`w-1/5 h-[85%] fixed border border-ccBlack  scrollbar-hidden shadow-lg rounded-lg o m-2  ${overFlow?"overflow-x-scroll":"overflow-x-scroll"}`}>
-                           
+                 <div className={`w-1/5 h-[85%] fixed border border-ccBlack  scrollbar-hidden shadow-lg rounded-lg px-2 bg-white overflow-y-scroll`}>
+                 <ConnectedUsers/>
                     </div>
                     <div></div>
                 </div>

@@ -87,7 +87,7 @@ function UserBasicDetailsModal() {
 
 
                     {
-                 ( data?.keyrole.length >0) &&  Object.values(data?.keyrole) ?. map((element, index) => <div className='w-full flex  '>
+                 ( data?.keyrole?.length >0) &&  Object.values(data?.keyrole) ?. map((element, index) => <div className='w-full flex  '>
                         <input type="text" name='keyRoles' className='border border-zinc-400 w-full rounded-lg pl-5  capitalize flex mb-1' placeholder="Key Roles"
                             id={
                                 `${

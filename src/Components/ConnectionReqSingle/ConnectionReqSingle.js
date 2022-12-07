@@ -25,6 +25,7 @@ function ConnectionReqSingle({data}) {
   const {userData}=useSelector(state=>state?.login)
   const handleAcceptReq=()=>{
     setAccept(true)
+    console.log(userData._id ,data?.userId?._id," axios passing data whiel aaccpting ")
     axios.post('/acceptConnectionReq',{userId:userData._id ,reqUser:data?.userId?._id})
     .then((response)=>{
         console.log(response,"iresponse ofgetConnectionSuggestionData ")

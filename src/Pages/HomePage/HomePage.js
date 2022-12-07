@@ -8,6 +8,7 @@ import ProfileBox from '../../Components/ProfileBox/ProfileBox'
 import Feeds from '../../Components/Feeds/Feeds'
 import axios from '../../Config/Axios'
 import { useNavigate } from 'react-router-dom';
+import ConnectedUsers from '../../Components/ConnectedUsers/ConnectedUsers'
 
 function HomePage() {
     const {postModal} = useSelector((state) => state ?. modal)
@@ -50,9 +51,9 @@ axios.get("/getCasualPostData").then(response=>{
                 {/* center box end */}
 
                 {/* right box start */}
-                <div className=' w-1/5 h-1/2  hidden md:block '>
-                    <div className='w-1/5 fixed border border-ccBlack'>
-                        right box
+                <div className=' w-1/5   hidden md:block '>
+                    <div className='w-1/5 h-[85%] fixed border border-zinc-400 shadow-lg rounded-lg bg-white px-2'>
+                 <ConnectedUsers/>
                     </div>
                 </div>
                 {/* right box end */} </div>

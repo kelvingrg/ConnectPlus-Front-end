@@ -64,7 +64,7 @@ function UserDetails({viewUserData}) {
 
 
 {/* key roles  */}
-  <p className='text-xs font-thin w-fit'>{  Object.values(viewUserData ? viewUserData?.keyrole : userData?.keyrole).map((element)=>element+" || ")} </p>
+ {viewUserData?.keyrole && <p className='text-xs font-thin w-fit'>{  Object.values(viewUserData ? viewUserData?.keyrole : userData?.keyrole).map((element)=>element+" || ")} </p>}
 {/* resume  */}
 { userData.resume && <button className='rounded-lg focus: mt-5 px-3 py-2 font-light border flex items-center justify-center active:bg-ccOrange active:text-ccBlack active:border-ccBlack'
 onClick={resumeView}
