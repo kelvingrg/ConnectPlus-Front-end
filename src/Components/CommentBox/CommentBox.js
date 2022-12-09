@@ -15,7 +15,7 @@ function CommentBox({data ,childDataFetch}) {
    const navigate=useNavigate()
     const {userData}=useSelector(state=>state?.login)
     const [postData,setPostData]=useState(data)
-    console.log(data,"post data from prop**********************",postData);
+
     
 
 
@@ -34,6 +34,11 @@ function CommentBox({data ,childDataFetch}) {
         Swal.fire('Any fool can use a computer')
       }
       else{
+     
+        dispatch(setSendNotification({
+          userId: userData._id,
+       receiverId: postData.postedBy._id
+         }))
 axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&commentText=${commentText}&userName=${userData.userName}&keyrole=${userData.keyrole}&dp=${userData.dp}`)
 
 .then((response)=>{
@@ -43,13 +48,12 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
     if (response ?. data ?. upload) {
         setCommentText("")
         setPostData({...postData,comment : response?.data?.singlePostData.comment})
-        dispatch(setSendNotification({
-          userId: userData._id,
-          receiverId: postData?. postedBy?._id      }))
+  
        
    }
 })
    .catch((error)=>{
+    console.log(error);
      localStorage.clear()
              navigate('/')
    })
