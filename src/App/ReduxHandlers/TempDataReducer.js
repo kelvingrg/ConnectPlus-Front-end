@@ -8,12 +8,14 @@ const INITIAL_STATE={
    overFlow:true,
    allAppliedCandidateData:'',
    allJobPostData:[],
-   selectedUserView:''
+   selectedUserView:'',
+   sendNotification:{},
+ }
 
 
 
    
-} ;
+
 
 const tempData=createSlice({
     name:"tempData",
@@ -25,6 +27,7 @@ const tempData=createSlice({
        setAllAppliedCandidateData:(state,action)=>{state.allAppliedCandidateData=action.payload},
        setAllJobPostData:(state,action)=>{state.allJobPostData=action.payload},
        setSelectedUserView:(state,action)=>{state.selectedUserView=action.payload},
+       setSendNotification:(state,action)=>{ state.sendNotification=action.payload}
 
     }
 })
@@ -34,9 +37,8 @@ export const {
     setOverFlow,
     setAllAppliedCandidateData,
     setAllJobPostData,
-    setSelectedUserView
+    setSelectedUserView,
+    setSendNotification,
 
 }=tempData.actions
 export default tempData.reducer
-
- 
