@@ -1,5 +1,5 @@
-import Connect_plus from  "../../Assets/Connect_plus.png"
-import React,{useEffect, useRef, useState} from 'react';
+import Connect_plus from  '../../Assets/Connect_plus.png'
+import React,{useState} from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineHome,AiOutlineUsergroupAdd,AiOutlineMessage } from "react-icons/ai";
@@ -9,14 +9,7 @@ import { TfiBell } from "react-icons/tfi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import DropDown from '../DropDown/DropDown';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../Config/Axios';
-import {io} from 'socket.io-client'
-import { setSendNotification, setSocket } from '../../App/ReduxHandlers/TempDataReducer';
-import { data } from 'autoprefixer';
-
-
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -29,75 +22,6 @@ export default function HomeNavbar() {
   
     const [navbar, setNavbar] = useState(false); 
     const dispatch =useDispatch();
-    const navigate=useNavigate()
-    const {userData}=useSelector(state=>state?.login)
-    const socket =useRef();
-    const [notificationNumber, setNotificationNumber]=useState({
-        connectioReq:0,
-        notification:0,
-        message:0
-    })
-
-    const [onlineusers,setOnlineUsers]=useState()
-     const  {sendNotification}=useSelector(state=>state?.tempData)
-        useEffect(()=>{
-        axios.get(`/notificationCount?userId=${userData._id}`)
-        .then((response)=>{
-             console.log(response,"response notification count fetch  ");
-            if (response ?. data ?. loadError) {
-                navigate('/page404')
-            }
-            if (response ?. data ?. dataFetched) {
-                setNotificationNumber({...notificationNumber, connectioReq:response?.data?.connectionReq})
-                setNotificationNumber({...notificationNumber, notification:response?.data?.notification})
-         
-              
-             
-            }
-        
-           })
-           .catch((error)=>{
-             localStorage.clear()
-                     navigate('/')
-           })
-    },[userData])
-
-
-
-    useEffect(()=>{
-        socket.current=io('http://localhost:8000')
-        socket.current.emit("new-user-add",userData._id)
-        socket.current.on('get-users',(users)=>{
-          setOnlineUsers(users)
-        
-          console.log(users,"onlineusers at notification ---10")
-        })
-      },[userData])
-
-
-
-     
-
-
-      useEffect(()=>{
-        if (sendNotification.userId){
-            socket.current.emit('send-notification',sendNotification)
- dispatch(setSendNotification({userId:null,otherUserId:null,}))
- }
- },[sendNotification])
-//  alert("reacged ",notificationNumber.notification)
-      
-
-    socket?.current?.on('receive-notification',(data)=>{
-        setNotificationNumber({...notificationNumber, notification:notificationNumber.notification+1})
-
-    })
-   
-
-
-
-
-
     
            return(
         

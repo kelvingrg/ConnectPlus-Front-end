@@ -3,19 +3,24 @@ import { useState } from 'react'
 import { CButton } from '../Button/CButton'
 import UserRoundDp from '../PostBox/UserRoundDp.js/UserRoundDp'
 import axiosInstance from '../../Config/Axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import Swal from 'sweetalert2'
+import {setSendNotification} from '../../App/ReduxHandlers/TempDataReducer'
 
 
 function CommentBox({data ,childDataFetch}) {
    const navigate=useNavigate()
     const {userData}=useSelector(state=>state?.login)
     const [postData,setPostData]=useState(data)
-    console.log(data,"post data from prop",postData);
+
+    
+
+
     const [commentText, setCommentText]=useState("")
+    const dispatch =useDispatch()
     useEffect(()=>{
         childDataFetch(postData.comment.length)
      },[postData.comment])
@@ -29,7 +34,10 @@ function CommentBox({data ,childDataFetch}) {
         Swal.fire('Any fool can use a computer')
       }
       else{
+     
+    
 axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&commentText=${commentText}&userName=${userData.userName}&keyrole=${userData.keyrole}&dp=${userData.dp}`)
+
 .then((response)=>{
     if (response ?. data ?. loadError) {
         navigate('/page404')
@@ -37,10 +45,15 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
     if (response ?. data ?. upload) {
         setCommentText("")
         setPostData({...postData,comment : response?.data?.singlePostData.comment})
-       
+  
+        dispatch(setSendNotification({
+          userId: userData._id,
+       receiverId: response?.data?.singlePostData.postedByGIT
+         }))
    }
 })
    .catch((error)=>{
+    console.log(error);
      localStorage.clear()
              navigate('/')
    })

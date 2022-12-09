@@ -12,7 +12,7 @@ function ConnectedUsers() {
     useEffect(()=>{
         axios.get(`/connectedUsersData?userId=${userData._id}`)
         .then(response=>{
-            console.log(response?.data?.data?.connections,"response of conncetd users data fetch");
+            console.log(response?.data?.data?.connections,"***********************response of conncetd users data fetch");
             if(response?.data?.dataFetched){
                 setConnectedUsers(response?.data?.data?.connections)
             }
