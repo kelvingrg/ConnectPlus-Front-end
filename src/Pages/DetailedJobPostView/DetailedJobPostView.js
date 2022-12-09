@@ -3,13 +3,15 @@ import HomeNavbar from '../../Components/Navbar/HomeNavbar'
 import ProfileBox from '../../Components/ProfileBox/ProfileBox'
 import axios from '../../Config/Axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { CButton } from '../../Components/Button/CButton'
 import { useLocation } from "react-router-dom";
 import Swal from 'sweetalert2';
 import AppliedCandidates from '../../Components/AppliedCandidates/AppliedCandidates';
 import './DetailedJobPostView.css'
 import { GrReturn } from 'react-icons/gr';
+import { setSendNotification } from '../../App/ReduxHandlers/TempDataReducer';
+import ConnectedUsers from '../../Components/ConnectedUsers/ConnectedUsers'
 
 
 
