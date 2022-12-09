@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import Swal from 'sweetalert2'
-import setSendNotification from '../../App/ReduxHandlers/TempDataReducer'
+import {setSendNotification} from '../../App/ReduxHandlers/TempDataReducer'
 
 
 function CommentBox({data ,childDataFetch}) {
@@ -35,10 +35,7 @@ function CommentBox({data ,childDataFetch}) {
       }
       else{
      
-        dispatch(setSendNotification({
-          userId: userData._id,
-       receiverId: postData.postedBy._id
-         }))
+    
 axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&commentText=${commentText}&userName=${userData.userName}&keyrole=${userData.keyrole}&dp=${userData.dp}`)
 
 .then((response)=>{
@@ -49,7 +46,10 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
         setCommentText("")
         setPostData({...postData,comment : response?.data?.singlePostData.comment})
   
-       
+        dispatch(setSendNotification({
+          userId: userData._id,
+       receiverId: response?.data?.singlePostData.postedByGIT
+         }))
    }
 })
    .catch((error)=>{
