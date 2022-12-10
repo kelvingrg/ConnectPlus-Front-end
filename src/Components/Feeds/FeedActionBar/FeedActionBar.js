@@ -1,19 +1,15 @@
-import React, { useEffect,useState } from 'react'
-import { AiOutlineLike ,AiOutlineComment} from "react-icons/ai";
-import { RiShareForwardLine } from "react-icons/ri";
-import { FiSend } from "react-icons/fi";
+import React, {useEffect, useState} from 'react'
+import {AiOutlineLike, AiOutlineComment} from "react-icons/ai";
+import {RiShareForwardLine} from "react-icons/ri";
+import {FiSend} from "react-icons/fi";
 import './FeedActionBar.css'
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from '../../../Config/Axios';
 
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
+import {Accordion, AccordionHeader, AccordionBody} from "@material-tailwind/react";
 import CommentBox from '../../CommentBox/CommentBox';
-import { useNavigate } from 'react-router-dom';
-import { setSendNotification } from '../../../App/ReduxHandlers/TempDataReducer';
+import {useNavigate} from 'react-router-dom';
+import {setSendNotification} from '../../../App/ReduxHandlers/TempDataReducer';
 
 function FeedActionBar({data}) {
     const {userData} = useSelector((state) => state.login)
