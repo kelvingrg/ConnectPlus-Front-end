@@ -19,7 +19,7 @@ function AdminLogin() {
             axios.post('/admin/login',{email:email,password:password}).then((response)=>{
              if(response?.data?.login){
                 localStorage.setItem("adminToken",response?.data?.adminToken)
-                navigate('/adminHome')
+                navigate('/admin/adminHome')
 
              }
              else{

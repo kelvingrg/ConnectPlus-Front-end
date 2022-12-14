@@ -30,8 +30,8 @@ axios.get("/getCasualPostData").then(response=>{
           navigate('/')
 })
   },[postUpdate])
+    
     return (<>
-
         <div className='parent bg-ccLight h-fit'>
             <HomeNavbar/>
             <div className='flex pt-20  px-10 justify-around  '> {/* left box start  */}

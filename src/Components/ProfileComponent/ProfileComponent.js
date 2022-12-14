@@ -26,8 +26,8 @@ function ProfileComponent() {
 const dispatch=useDispatch();
   useEffect(()=>{dispatch(setUserProfileModalClose())},[])
   return (
-    <>    <div className=' parent pt-20 flex justify-center w-screen ' >
-      <div className={ `w-full ${userDpEditModalState?"md:w-[40%]":"md:w-[70%]"}  rounded-lg shadow-lg overflow-hidden  `} >
+    <>    <div className=' pt-20 ' >
+      <div className={ `w-full rounded-lg shadow-lg overflow-hidden  `} >
  <UserDetails />
  <AboutUser/>
  <Experience/>

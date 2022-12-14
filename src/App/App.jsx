@@ -3,8 +3,11 @@ import React, { useEffect } from "react";
 import { json, Route,Routes} from  'react-router-dom'
 import Auth from "../Auth/Auth";
 import Page404 from "../Pages/404Page/Page404";
+import AdminCasualPost from "../Pages/Admin/AdminCasualPost/AdminCasualPost";
 import AdminHome from "../Pages/Admin/AdminHome/AdminHome";
+import AdminJobPost from "../Pages/Admin/AdminJobPost/AdminJobPost";
 import AdminLoginPage from "../Pages/Admin/AdminLoginPage/AdminLoginPage";
+
 import ChatPage from "../Pages/ChatPage/ChatPage";
 import Connections from "../Pages/Connections/Connections";
 import DetailedJobPostView from "../Pages/DetailedJobPostView/DetailedJobPostView";
@@ -52,7 +55,9 @@ function App() {
 
  {/* admin routes  */}
  <Route  path="/admin" element={<AdminLoginPage/>}  />
- <Route  path="/adminHome" element={<AdminHome/>}  />
+ <Route  path="/admin/adminHome" element={<AdminHome/>}  />
+ <Route  path="/admin/jobPosts" element={<AdminJobPost/>}  />
+ <Route  path="/admin/posts" element={<AdminCasualPost/>}  />
 
   {/* admin routes  */}
 </Routes>
