@@ -23,7 +23,7 @@ function ConnectedUsers() {
           })
           .catch((error)=>{
             localStorage.clear()
-                    // navigate('/')
+                     navigate('/')
           })
     },[])
     console.log()

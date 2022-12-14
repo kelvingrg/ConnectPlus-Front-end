@@ -8,19 +8,22 @@ import { useNavigate } from 'react-router-dom'
 function AdminLogin() {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-    const [invalidCred,setInavlidCred]=useState(true)
+    const [invalidCred,setInavlidCred]=useState(false)
     const navigate=useNavigate()
 
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(email!=null && email!="" && password!=null && password!=""){
-            alert("login starts ")
+          
             console.log(password, email,"admin login ");
             axios.post('/admin/login',{email:email,password:password}).then((response)=>{
              if(response?.data?.login){
                 localStorage.setItem("adminToken",response?.data?.adminToken)
                 navigate('/adminHome')
 
+             }
+             else{
+              setInavlidCred(true)
              }
 
                 

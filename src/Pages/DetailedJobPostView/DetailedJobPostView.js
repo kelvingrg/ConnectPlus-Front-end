@@ -149,7 +149,7 @@ function DetailedJobPostView() {
 
                 {/* right box start */}
                 <div className=' w-1/5  ml-6 hidden md:block '>
-                   <div className='w-1/5 h-[85%] fixed border border-ccBlack overflow-y-scroll scrollbar-hidden shadow-lg rounded-lg overflow-x-visible bg-whiite '>
+                   <div className='w-1/5 h-[85%] fixed border border-ccBlack overflow-y-scroll scrollbar-hidden shadow-lg rounded-lg overflow-x-visible bg-white '>
                 <ConnectedUsers/>
                    </div>
                </div>

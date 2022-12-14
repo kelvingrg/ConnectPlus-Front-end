@@ -13,6 +13,7 @@ import ConnectedUsers from '../../Components/ConnectedUsers/ConnectedUsers'
 function HomePage() {
     const {postModal} = useSelector((state) => state ?. modal)
     const [postData,setPostData]=useState([])
+    const [postUpdate,setPostUpdate]=useState({})
   const navigate=useNavigate()
   useEffect(()=>{
 axios.get("/getCasualPostData").then(response=>{
@@ -28,7 +29,7 @@ axios.get("/getCasualPostData").then(response=>{
   localStorage.clear()
           navigate('/')
 })
-  },[])
+  },[postUpdate])
     return (<>
 
         <div className='parent bg-ccLight h-fit'>
@@ -43,7 +44,7 @@ axios.get("/getCasualPostData").then(response=>{
 
                 {/* center box start */}
                 <div className='justify-self-center items-center w-full md:w-[45%] h-auto block '>
-                    <PostBox/>
+                    <PostBox />
                     {postData.map((element)=><Feeds data={element}/>)}
                     
                     
@@ -59,7 +60,7 @@ axios.get("/getCasualPostData").then(response=>{
                 {/* right box end */} </div>
         </div>
         {
-        postModal && <CasualPostModal/>
+        postModal && <CasualPostModal  setPostUpdate={setPostUpdate}/>
     } </>)
 }
 

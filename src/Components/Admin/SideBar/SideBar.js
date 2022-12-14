@@ -10,15 +10,20 @@ function SideBar() {
     <div className='flex items-center justify-center my-5 '>
     <img src={Connect_plus} alt="" className=' w-16 h-16' />  
    </div> 
-   <div className='text-white flex items-center pl-10  h-12 w-full border-b border-white hover:border-2 hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white' onClick={alert("hai")}> <span className='flex items-center space-x-4'><AiOutlineHome size={17}/> <h2>Home</h2></span> </div>
-   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'> <span className='flex items-center space-x-4'><AiOutlineUser size={17}/> <h2>Users</h2></span>  </div>
+   <div className='text-white flex items-center pl-10  h-12 w-full border-b border-white hover:border-2 hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'> 
+   <span className='flex items-center space-x-4'><AiOutlineHome size={17}/> <h2>Home</h2></span> </div>
+   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'>
+     <span className='flex items-center space-x-4'><AiOutlineUser size={17}/> <h2>Users</h2></span>  </div>
 
-   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'><span className='flex items-center space-x-4'><BsBriefcase size={17}/> <h2>Jobs</h2></span> </div>
+   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'>
+    <span className='flex items-center space-x-4'><BsBriefcase size={17}/> <h2>Jobs</h2></span> </div>
 
-   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'><span className='flex items-center space-x-4'><BsPencilSquare size={17}/> <h2>Posts</h2></span> </div>
+   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'>
+    <span className='flex items-center space-x-4'><BsPencilSquare size={17}/> <h2>Posts</h2></span> </div>
 
 
-   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'><span className='flex items-center space-x-4'><AiOutlinePoweroff size={17}/> <h2>Logout</h2></span> </div>
+   <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'>
+    <span className='flex items-center space-x-4'><AiOutlinePoweroff size={17}/> <h2>Logout</h2></span> </div>
 
 
 
