@@ -44,11 +44,13 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
     }
     if (response ?. data ?. upload) {
         setCommentText("")
+   
         setPostData({...postData,comment : response?.data?.singlePostData.comment})
+       
   
         dispatch(setSendNotification({
           userId: userData._id,
-       receiverId: response?.data?.singlePostData.postedByGIT
+       receiverId: response?.data?.singlePostData?.postedBy
          }))
    }
 })

@@ -34,8 +34,8 @@ console.log(response,"iresponse of own jiob post data ")
 }
 
 }) .catch((error)=>{
-  //    localStorage.clear()
-  //            navigate('/')
+     localStorage.clear()
+             navigate('/')
   })
     }
 
