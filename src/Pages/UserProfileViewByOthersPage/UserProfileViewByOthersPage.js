@@ -40,8 +40,8 @@ useEffect(()=>{
 
    })
    .catch((error)=>{
-    //  localStorage.clear()
-    //          navigate('/')
+     localStorage.clear()
+             navigate('/')
    })
 
 },[selectedUserView])

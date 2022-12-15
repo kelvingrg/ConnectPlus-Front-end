@@ -25,12 +25,13 @@ function Feeds({data}) {
         <div className='h-auto overflow-hidden'>
         
         <div className='flex justify-between  border-b px-5 py-3 '>
+        <div className='flex'>
                         <div className=' w-12 h-12 rounded-full mt-1 '>
                             <UserRoundDp image={`images/dp/${data?.postedBy?.dp}`}/>
-                 <div className='flex'>
-
                  
-                        </div>
+                            </div>
+                 
+                      
                         <div className='flex-col'>
 
                             <h1 className='pl-2'>{data?.postedBy?.userName}
@@ -38,9 +39,9 @@ function Feeds({data}) {
                             <p className='ml-2 font-thin text-sm'>flutter devoloper</p>
 
                         </div>
-
+                        
                     </div>
-                    <div>
+                    <div className='h-full flex justify-center items-center'>
                     <Menu  placement="left-start">
       <MenuHandler>
         <Button variant="text" className="active:bg-none border-0 p-0 m-0">  <BsThreeDotsVertical size={17} /> </Button>
