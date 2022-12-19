@@ -13,6 +13,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../Config/Axios';
 import {io} from 'socket.io-client'
 import { setSendNotification, setSocket } from '../../App/ReduxHandlers/TempDataReducer';
+import { setSearchModalState } from "../../App/ReduxHandlers/ModalSlice";
+import CasualPostModal from "../Modal/CasualPostModal/CasualPostModal";
+import SearchModal from "../Modal/SearchModal/SearchModal";
 
 
 
@@ -37,6 +40,7 @@ export default function HomeNavbar() {
         notification:0,
         message:0
     })
+    const{searchModalState }=useSelector((state)=>state?.modal)
 
     const [onlineusers,setOnlineUsers]=useState()
      const  {sendNotification}=useSelector(state=>state?.tempData)
@@ -101,7 +105,7 @@ export default function HomeNavbar() {
     
            return(
         
-
+            <>
               <nav className="w-full bg-ccBlack z-30 fixed">
                 <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                     <div>
@@ -109,7 +113,7 @@ export default function HomeNavbar() {
                             <a href="javascript:void(0)">
                                 <img src={Connect_plus} alt="" className='' />
                             </a>
-<div className='flex items-center justify-center ' ><input type="text" className='bg-white border rounded-md md:ml-20 pl-2' placeholder='Search..' /><div className={`text-white pl-2 hover:scale-110 hover:text-ccOrange bold `}><CiSearch size={20}/></div> </div>
+<div className='flex items-center justify-center ' ><input type="text" className='bg-white border rounded-md md:ml-20 pl-2' placeholder='Search..'  onClick={()=>dispatch(setSearchModalState(true))}/><div className={`text-white pl-2 hover:scale-110 hover:text-ccOrange bold `}><CiSearch size={20}/></div> </div>
 
                             <div className="md:hidden">
                                 <button
@@ -196,10 +200,13 @@ export default function HomeNavbar() {
                                      </div>
                     </div>
                 </div>
+
+
             </nav>
     
           
-          
+         { searchModalState && <SearchModal/>}
+         </>
             
         );
     }

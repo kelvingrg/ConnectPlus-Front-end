@@ -9,6 +9,7 @@ import InputEmoji from 'react-input-emoji'
 import UserRoundDp from '../PostBox/UserRoundDp.js/UserRoundDp';
 import { CButton } from '../Button/CButton';
 import baseURL from '../../Constants/Constants';
+import { useSelector } from 'react-redux';
 
 function Chat2Box({chat, currentUserId ,setSendMessage,receiveMessage}) {
     const t=true
@@ -17,6 +18,7 @@ function Chat2Box({chat, currentUserId ,setSendMessage,receiveMessage}) {
     const [messages,setMessages]=useState([])
     const [newMessage,setNewMessage]=useState('')
     const scroll=useRef();
+    const {userData}=useSelector(state=>state.login)
 
 
     const navigate=useNavigate()
@@ -156,12 +158,8 @@ useEffect(()=>{
 <div className='h-20 w-full flex items-center border shadow-lg'>
 <div className=' h-12 w-12 hidden md:flex '>
    
-   <UserRoundDp image=
-"https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fcochin&psig=AOvVaw2sR70RtpHS5xjPy99-nGHw&ust=1670309604646000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNibs6by4fsCFQAAAAAdAAAAABAE"
+ <UserRoundDp image={`${baseURL}/images/dp/${userData.dp}`}/>
 
-// {`images/dp/${element.dp}`}
-
-/>
 </div>
 <InputEmoji
                value={newMessage}

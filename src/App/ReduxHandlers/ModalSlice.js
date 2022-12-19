@@ -11,7 +11,8 @@ const INITIAL_STATE={
    userAboutSessionModalState:false,
    userExperienceEditModalState:false,
    userSkillUpdateModalState:false,
-   jobPostEditModalState:false
+   jobPostEditModalState:false,
+   searchModalState:false,
 
 
    
@@ -35,6 +36,8 @@ const modalSlice=createSlice({
         setUserExperienceEditModalState:(state,action)=>{state.userExperienceEditModalState=action.payload},
         setUserSkillUpdateModalState:(state,action)=>{state.userSkillUpdateModalState=action.payload},
         setJobPostEditModalState:(state,action)=>{state.jobPostEditModalState=action.payload},
+        setSearchModalState:(state,action)=>{state.searchModalState=action.payload},
+
 
         setUserProfileModalClose:(state,action)=>{
                                                 state.basicDetailsModal=false
@@ -43,6 +46,7 @@ const modalSlice=createSlice({
                                                 state.userExperienceEditModalState=false
                                                 state.userSkillUpdateModalState=false
                                                 state.jobPostEditModalState=false
+                                                state.searchModalState=false
                                                   
                                                    
                                                   },
@@ -60,6 +64,7 @@ export const {
     setUserSkillUpdateModalState,
     setForgotPassWordModalState,
     setJobPostEditModalState,
+    setSearchModalState,
 
 }=modalSlice.actions
 export default modalSlice.reducer

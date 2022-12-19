@@ -64,11 +64,11 @@ function ConnectionReqSingle({data}) {
                   
   return (
 !decline &&  <div className='w-full px-7 py-3 border border-b flex justify-between '>
-                        <div className='w-14 h-14 flex'>
+                        <div className='w-14 h-14 flex ' onClick={()=>navigate(`/userProfileViewByOthers`, { state: data?.userId?._id })}>
                         <UserRoundDp image={`${baseURL}/images/dp/${data?.userId?.dp}`}/>
                      
                         </div>
-                        <div className=' grow pl-5 pt-1 '>
+                        <div className=' grow pl-5 pt-1 ' onClick={()=>navigate(`/userProfileViewByOthers`, { state: data?.userId?._id })}>
 
                             <p className=' font-semibold leading-3'>{data?.userId?.userName} </p>
                             <p className=' font-light '> {data?.userId?.currentDesignation} </p>

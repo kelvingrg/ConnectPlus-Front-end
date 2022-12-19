@@ -42,7 +42,7 @@ function UserDetails({viewUserData}) {
 <div className='relative w-full md:h-60 h-40   flex justify-center'>
 
    <CoverPhoto image={"https://images.unsplash.com/photo-1608408843539-9a2c43a5a60a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1142&q=80"} />
-   <div className='absolute  w-32 h-32 md:w-44 md:h-44 rounded-full top-24 md:top-36  left-4 md:left-16' onClick={()=>dispatch(setUserDpEditModalState(true))}> 
+   <div className='absolute  w-32 h-32 md:w-44 md:h-44 rounded-full top-24 md:top-36  left-4 md:left-16' onClick={()=> viewUserData && dispatch(setUserDpEditModalState(true))}> 
    <UserRoundDp image={`images/dp/${viewUserData ? viewUserData?.dp: userData.dp}`}  />
     </div>
 </div>

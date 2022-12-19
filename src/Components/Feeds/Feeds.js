@@ -12,11 +12,12 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 
 
-function Feeds({data}) {
-  console.log(data,"data at feeda 10 ");
+function Feeds({data, viewOnly}) {
+  const navigate=useNavigate()
   
   return (
   
@@ -25,7 +26,7 @@ function Feeds({data}) {
         <div className='h-auto overflow-hidden'>
         
         <div className='flex justify-between  border-b px-5 py-3 '>
-        <div className='flex'>
+        <div className='flex' onClick={()=>navigate(`/userProfileViewByOthers`, { state: data?.postedBy?._id })}>
                         <div className=' w-12 h-12 rounded-full mt-1 '>
                             <UserRoundDp image={`images/dp/${data?.postedBy?.dp}`}/>
                  
@@ -36,7 +37,7 @@ function Feeds({data}) {
 
                             <h1 className='pl-2'>{data?.postedBy?.userName}
                             </h1>
-                            <p className='ml-2 font-thin text-sm'>flutter devoloper</p>
+                            <p className='ml-2 font-thin text-sm'>{data?.postedBy?.currentDesignation}</p>
 
                         </div>
                         
@@ -49,7 +50,7 @@ function Feeds({data}) {
       <MenuList className='p-0 m-0'>
   <MenuItem className="text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2"> <MdReportGmailerrorred size={15}/>Report</MenuItem>
          {/* <MenuItem className="text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" onClick={blockJobPost}> <BiBlock size={15}/>Delete</MenuItem>}  onClick={deleteJobPost}    onClick={unBlockJobPost} */}
-        <MenuItem className="text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" ><BsTrash size={15}/> Delete</MenuItem>
+     { !viewOnly && <MenuItem className="text-sm py-2 px-4 font-normal  w-full whitespace-no-wrap bg-white text-black hover:text-ccOrange  hover:bg-ccBlack border-b flex items-center gap-2" ><BsTrash size={15}/> Delete</MenuItem>}
 
       </MenuList>
     </Menu>

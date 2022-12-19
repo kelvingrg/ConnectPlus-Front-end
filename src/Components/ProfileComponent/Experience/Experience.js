@@ -23,7 +23,7 @@ function Experience({viewUserData}) {
 {/* company details start */}
 
 
-{viewUserData ? viewUserData?.experience: userData?.experience.map((element)=><div className='border-b border-t py-2 '>
+{viewUserData ? viewUserData?.experience.map((element)=><div className='border-b border-t py-2 '>
 <div className='mt-2 flex  '>
 <CompanyLogo image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjk9v6uG9g5AEonjfD_kYL_yoU_H78-w93Vl_SY3USsjtHVT3PXGkEB_oIVAAzb9JiP5A&usqp=CAU"}/>
 <div className=' px-10'>
@@ -35,7 +35,22 @@ function Experience({viewUserData}) {
 </div>
 </div>
 <p>{element.jd}</p>
-</div>)}
+</div>):
+ userData?.experience.map((element)=><div className='border-b border-t py-2 '>
+<div className='mt-2 flex  '>
+<CompanyLogo image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjk9v6uG9g5AEonjfD_kYL_yoU_H78-w93Vl_SY3USsjtHVT3PXGkEB_oIVAAzb9JiP5A&usqp=CAU"}/>
+<div className=' px-10'>
+<p className=' font-semibold'>{element.companyName}</p>
+      <p className=' font-semibold'>{element.designation}</p>
+  <p className='inline font-thin text-sm'>{element.fromDate}</p> -  
+ <p className='inline font-thin text-sm'>{element.endDate}</p><br />
+ <p className='inline font-thin text-sm'> {element.workLocation}</p>
+</div>
+</div>
+<p>{element.jd}</p>
+</div>)
+
+}
 
 
 

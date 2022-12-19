@@ -20,6 +20,7 @@ import NewChat from "../Pages/NewChat/NewChat";
 import Notification from "../Pages/Notification/Notification";
 import Profile from "../Pages/Profile/Profile";
 import UserProfileViewByOthersPage from "../Pages/UserProfileViewByOthersPage/UserProfileViewByOthersPage";
+import UserProfileViewCommon from "../Pages/UserProfileViewByOthersPage/UserProfileViewCommon";
 import Authorisation from "./Authorisation";
 import LoginAuthorisation from "./LoginAuthorisation";
 
@@ -46,6 +47,8 @@ function App() {
 
 <Route  path="/detailedJobPostView/:id" element={<DetailedJobPostView/>}  /> 
 <Route  path="/UserProfileViewByOthersPage/:id" element={<UserProfileViewByOthersPage/>}  /> 
+
+<Route  path="/userProfileViewByOthers" element={<UserProfileViewCommon/>}  /> 
 <Route  path="/connectionDetails" element={<Connections/>}  /> 
 <Route  path="/chat" element={<ChatPage/>}  /> 
 <Route  path="/newchat" element={<NewChat/>}  /> 

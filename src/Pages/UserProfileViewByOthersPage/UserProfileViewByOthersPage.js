@@ -21,20 +21,22 @@ function UserProfileViewByOthersPage( ) {
   const navigate=useNavigate()
   const {selectedUserView}=useSelector(state=>state.tempData)
   const {id}= useParams()
-  console.log(id,"id at UserProfileViewByOthersPage");
-  const location = useLocation()
   const [viewUserData,setViewUserData]=useState()
+  const location = useLocation()
+
 const userId  = location.state; 
 console.log((location.state,"user id at profile view "));
 
 useEffect(()=>{
   axios.post('/getUserData',{userId:selectedUserView})
   .then((response)=>{
-    console.log(response,"iresponse of userAbout SessionUpdate **********************************************")
     if (response ?. data ?. loadError) {
         navigate('/page404')
     }
     if (response ?. data ?. dataFetched) {
+      console.log('====================================');
+      console.log(response ?. data ?. response[0],"****%%%%%");
+      console.log('====================================')
       setViewUserData(response ?. data ?. response[0])
    }
 

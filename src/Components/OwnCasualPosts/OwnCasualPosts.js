@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Feeds from '../Feeds/Feeds'
 
-function OwnCasualPosts() {
+function OwnCasualPosts({viewOnly}) {
     const {userData} = useSelector((state) => state ?. login)
     const [postData,setPostData]=useState([])
     const navigate=useNavigate()
@@ -24,7 +24,7 @@ function OwnCasualPosts() {
         })
           },[])
   return (
-    postData.map((element)=><Feeds data={element}/>)
+    postData.map((element)=><Feeds data={element} viewOnly={viewOnly}/>)
   )
 }
 

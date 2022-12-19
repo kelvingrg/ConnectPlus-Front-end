@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import {setSendNotification} from '../../App/ReduxHandlers/TempDataReducer'
+import baseURL from '../../Constants/Constants'
 
 
 function CommentBox({data ,childDataFetch}) {
@@ -98,8 +99,9 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
 
      {  postData?.comment?.sort(function(a,b){
 return new Date(b.timeStamp) - new Date(a.timeStamp)}).map((element)=> <div className='flex mt-2 '>
-<div className='h-12 w-12 '>
-<UserRoundDp image={`images/dp/${element.dp}`}/>
+<div className='h-12 w-12 ' > 
+{/* onClick={()=>navigate(`/userProfileViewByOthers`, { state: element?._id })} */}
+<UserRoundDp image={`${baseURL}/images/dp/${element.dp}`}/>
 </div> 
 <div className=' ml-2 bg-gray-100 w-full pt-1 px-3 rounded-lg'>
  <p className="text-lg font-semibold leading-[1.2rem] float-left"> {element.userName}</p>

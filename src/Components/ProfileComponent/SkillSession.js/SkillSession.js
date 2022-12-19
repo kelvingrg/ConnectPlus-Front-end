@@ -29,12 +29,19 @@ function SkillSession({viewUserData})  {
   <div className=' border-b border-t py-2'>
 {/* map will write here */}
 
-{viewUserData ? viewUserData?.skills: userData?.skills?.map((element)=>
+{viewUserData ? viewUserData?.skills?.map((element)=>
     <div className='flex items-center justify-between w-full '>
 <div className='flex items-center'><BiRightArrow size={15}/> &nbsp;<p>  {element.skillName}</p> </div>
 <div className='w-[80%] px-auto ml-10 '><SkillProgressBar progress={element.percentage}/>
 </div>
-</div>)}
+</div>)
+: userData?.skills?.map((element)=>
+<div className='flex items-center justify-between w-full '>
+<div className='flex items-center'><BiRightArrow size={15}/> &nbsp;<p>  {element.skillName}</p> </div>
+<div className='w-[80%] px-auto ml-10 '><SkillProgressBar progress={element.percentage}/>
+</div>
+</div>)
+}
 {/* map will end  here */}
 
   </div>

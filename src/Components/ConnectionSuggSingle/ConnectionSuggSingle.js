@@ -28,10 +28,6 @@ console.log(response,"iresponse ofgetConnectionSuggestionData ")
 if (response ?. data ?. loadError) {
 navigate('/page404')
 }
-if (response ?. data ?. update) {
-console.log(response,"iresponse of own jiob post data ")
-
-}
 
 }) .catch((error)=>{
      localStorage.clear()
@@ -52,9 +48,9 @@ console.log(response,"iresponse of own jiob post data ")
       
       
         <div className='flex flex-col items-center justify-center '>
-            <div className='w-20 h-20  mt-5 mb-3 '> 
+            <div className='w-20 h-20  mt-5 mb-3 ' onClick={()=>navigate(`/userProfileViewByOthers`, { state: data?._id })}> 
        <UserRoundDp image={`${baseURL}/images/dp/${data?.dp}`} /> </div>
-          <div className='pl-2 w-full flex flex-col justify-center items-center'>
+          <div className='pl-2 w-full flex flex-col justify-center items-center' onClick={()=>navigate(`/userProfileViewByOthers`, { state: data?._id })}>
   <p className='bold text-black font-bold text-lg capitalize'>{data.userName} </p>
   <p className='bold text-black  font-semibold capitalize'> {data.currentDesignation} </p>
   <p className='bold text-black  font-light text-sm capitalize text-center px-1 '> {data?.keyrole?.map((element)=>element+ " ||")} </p>
