@@ -1,5 +1,5 @@
-import axios from '../../Config/Axios'
-import React from 'react'
+import axios from '../../Config/adminAxios'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import  background from'../../Assets/landingPageImage.jpg'
 import { CButton } from '../Button/CButton'
@@ -10,6 +10,8 @@ function AdminLogin() {
     const [password,setPassword]=useState('')
     const [invalidCred,setInavlidCred]=useState(false)
     const navigate=useNavigate()
+    const [adminData,setAdminData]=useState([])
+    const token =    localStorage.getItem("adminToken")
 
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -19,18 +21,23 @@ function AdminLogin() {
             axios.post('/admin/login',{email:email,password:password}).then((response)=>{
              if(response?.data?.login){
                 localStorage.setItem("adminToken",response?.data?.adminToken)
-                navigate('/admin/adminHome')
-
+                setAdminData(response?.data?.adminData)
              }
              else{
               setInavlidCred(true)
-             }
-
+                }
+ 
                 
        console.log(response,"response after login dine ");
             })
         }
     }
+    useEffect(()=>{
+  const token =    localStorage.getItem("adminToken")
+  if(token && adminData){
+    navigate('/admin/adminHome')
+  }
+    },[token && adminData])
 
   return (
     <div className='bg-cover min-h-screen min-w-full flex justify-center items-center '  style={{ backgroundImage: `url(${background})`  }} >

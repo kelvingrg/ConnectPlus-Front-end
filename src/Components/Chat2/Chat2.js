@@ -13,10 +13,11 @@ function Chat2() {
     console.log(userData,"userData step 1");
     const [ chats,setChats]=useState([])
     const [currentChat,setCurrentChat]=useState(null)
-    const socket =useRef();
+    // const socket =useRef();
     const [onlineUsers,setOnlineUsers]=useState([]);
     const [sendMessage, setSendMessage]=useState(null)
     const [receiveMessage, setReceiveMessage]=useState(null)
+    const {socket}=useSelector(state=>state?.chat)
     
     useEffect(()=>{
       const getChats=async()=>{
@@ -36,8 +37,8 @@ function Chat2() {
     
     //conect to socket io
     useEffect(()=>{
-      socket.current=io('http://localhost:8000')
-      socket.current.emit("new-user-add",userData._id)
+    //  socket.current=io('http://localhost:8000')
+     // socket.current.emit("new-user-add",userData._id)
       socket.current.on('get-users',(users)=>{
         setOnlineUsers(users)
         console.log(users,"onlineusers at chatjs ---10")

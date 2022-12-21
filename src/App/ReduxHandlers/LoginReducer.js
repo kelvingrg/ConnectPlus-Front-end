@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 const INITIAL_STATE = {
     userLogin: false,
     invalidCred: false,
+    blocked:false,
     email: "",
     password: "",
     userData: []
@@ -44,15 +45,21 @@ const loginReducer = createSlice({
     },
     extraReducers: {
         [loginUser.pending]: () => {
-            console.log('pensinf')
         },
         [loginUser.fulfilled]: (state, action) => {
-            if (action.payload ?. data ?. login) {              
-                localStorage.setItem("token", action.payload.data ?. token);
-                localStorage.setItem("userData", JSON.stringify(action.payload.data ?. userData))
-                state.userData = action.payload.data ?. userData[0];
+            if(action.payload ?. data ?. blocked){
+                state.blocked = true
+                state.userLogin = false
+            }
+            else if (action.payload ?. data ?. login) {              
+                localStorage.setItem("token", action.payload.data ?. token)
+                    localStorage.setItem("userData", JSON.stringify(action.payload.data ?. userData))
+                        state.userData = action.payload.data ?. userData[0];
+                        state.userLogin = true
+                    
+             
                 state.invalidCred = false
-                state.userLogin = true
+               state.userLogin = true
             } else {
                 state.invalidCred = true
                 state.userLogin = false

@@ -9,6 +9,7 @@ import tempDataReducer from './TempDataReducer'
 import storage from "redux-persist/lib/storage"
 import {persistReducer} from "redux-persist" 
 import { combineReducers } from '@reduxjs/toolkit';
+import ChatReducer from './ChatReducer';
 
 
 const persistConfig={
@@ -21,6 +22,7 @@ const reducer=combineReducers({
     postType: postTypeReducer,
     login: loginReducer,
     tempData:tempDataReducer,
+    chat:ChatReducer,
 })
 
 const persistedReducer=persistReducer(persistConfig,reducer)

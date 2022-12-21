@@ -12,7 +12,7 @@ function AdminCasualPost() {
             </div>
 
             <div className="container h-screen w-full overflow-y-scroll overflow-x-hidden">
-                <div className="bg-green-500 h-full">
+                <div className=" h-full">
                    <CasualPostList/>
 
                 </div>

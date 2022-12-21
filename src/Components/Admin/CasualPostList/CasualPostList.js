@@ -1,4 +1,4 @@
-import axios from '../../../Config/Axios'
+import axios from '../../../Config/adminAxios'
 import React, { useEffect, useState } from 'react'
 import TableHeading from '../TableComponents/TableHeading.js/TableHeading'
 import { useNavigate } from 'react-router-dom'
@@ -22,7 +22,7 @@ function CasualPostList() {
 
         }).catch((error) => {
             localStorage.clear()
-            navigate('/')
+            navigate('/admin')
         })
     },[postDeleted])
     

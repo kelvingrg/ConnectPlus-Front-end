@@ -16,6 +16,7 @@ import { setSendNotification, setSocket } from '../../App/ReduxHandlers/TempData
 import { setSearchModalState } from "../../App/ReduxHandlers/ModalSlice";
 import CasualPostModal from "../Modal/CasualPostModal/CasualPostModal";
 import SearchModal from "../Modal/SearchModal/SearchModal";
+import { setChatSocket } from "../../App/ReduxHandlers/ChatReducer";
 
 
 
@@ -70,6 +71,7 @@ export default function HomeNavbar() {
 
     useEffect(()=>{
         socket.current=io('http://localhost:8000')
+        dispatch(setChatSocket(socket))
         socket.current.emit("new-user-add",userData._id)
         socket.current.on('get-users',(users)=>{
           setOnlineUsers(users)

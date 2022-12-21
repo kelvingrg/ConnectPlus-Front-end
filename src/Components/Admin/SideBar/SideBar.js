@@ -25,7 +25,13 @@ function SideBar() {
 
 
    <div className='text-white flex items-center pl-10   h-12 w-full border-b border-white hover:border hover:border-ccOrange hover:text-ccOrange hover:shadow-lg  active:bg-ccOrange active:text-ccBlack active:border-2  active:border-white'>
-    <span className='flex items-center space-x-4'><AiOutlinePoweroff size={17}/> <h2>Logout</h2></span> </div>
+    <span className='flex items-center space-x-4'   onClick={
+                                    e => {
+                                        e.preventDefault()
+                                        localStorage.clear()
+                                        navigate('/admin')
+                                    }}
+                                    ><AiOutlinePoweroff size={17}/> <h2>Logout</h2></span> </div>
 
 
 

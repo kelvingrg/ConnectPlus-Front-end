@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../../Config/adminAxios'
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import TableHeading from '../TableComponents/TableHeading.js/TableHeading';
@@ -28,9 +28,9 @@ function UsersLlist() {
                 navigate('/page404')
             }
 
-        }).catch((error) => {
+        }).catch((error) => {   
             localStorage.clear()
-            navigate('/')
+            navigate('/admin')
         })
 
     }, [])

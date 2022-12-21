@@ -49,7 +49,7 @@ const DropDown = ({children, account, jobPost, OwnJobPost}) => { // dropdown pro
                         {
                         account && <div ref={popoverDropdownRef}
                             className={
-                                (dropdownPopoverShow ? "block " : "hidden ") + "text-base z-50  float-right  list-none text-left rounded-lg shadow-lg mt-3 border border-zinc-400  pr-40"
+                                (dropdownPopoverShow ? "block " : "hidden ") + "text-base z-50  float-right  list-none text-left rounded-lg shadow-lg mt-3 border border-zinc-400  "
                             }
                             style={
                                 {minWidth: "8rem"}

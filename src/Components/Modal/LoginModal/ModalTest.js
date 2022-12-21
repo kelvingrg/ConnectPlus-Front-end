@@ -14,8 +14,9 @@ import { useNavigate } from 'react-router-dom';
 function ModalTest() {
 
   const navigate=useNavigate()
-
-  const {email, password,invalidCred,userLogin}=useSelector((state)=>state?.login)
+  const token =localStorage.getItem("token")
+  const {email, password,invalidCred,userLogin,blocked}=useSelector((state)=>state?.login)
+  const {userData}=useSelector(state=>state?.login)
 
   const dispatch=useDispatch()
   const handleSubmit=(e)=>{
@@ -23,13 +24,15 @@ e.preventDefault()
 console.log(email,password,"username and password")
 return new Promise((resolve,reject )=>{
   dispatch(loginUser({email, password}))
-  if(userLogin){
-    navigate("/home")
-  }
 }
 )
-
   }
+  useEffect(()=>{
+   
+     if(userLogin && token){
+    navigate("/home")
+  }
+  },[userLogin && userData])
  
   return (
     <div className='ModalTest absolute flex justify-center items-center h-screen w-screen z-30 overflow-visible border ' >
@@ -46,6 +49,10 @@ return new Promise((resolve,reject )=>{
       <label htmlFor="username" className=' '>PassWord : </label><br />
       <input type="password" className='border  border-black w-full my-3 h-10 rounded-lg pl-4'  name="password" placeholder='Enter your Password ..' value={password} onChange={(e)=> dispatch(setPassword(e.target.value))}/>
      {invalidCred &&<p className='text-red-600'> invalid credentials 
+     
+     </p>}
+     {blocked &&<p className='text-red-600'> your account has teporarily suspended 
+     
      </p>}
      <p className=' font-thin italic text-blue-400 underline'><a onClick={()=>{
      dispatch(setLoginModal(false))

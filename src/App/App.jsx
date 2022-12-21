@@ -21,6 +21,7 @@ import Notification from "../Pages/Notification/Notification";
 import Profile from "../Pages/Profile/Profile";
 import UserProfileViewByOthersPage from "../Pages/UserProfileViewByOthersPage/UserProfileViewByOthersPage";
 import UserProfileViewCommon from "../Pages/UserProfileViewByOthersPage/UserProfileViewCommon";
+import AdminAuthorisation from "./AdminAuthorisation";
 import Authorisation from "./Authorisation";
 import LoginAuthorisation from "./LoginAuthorisation";
 
@@ -58,10 +59,11 @@ function App() {
 
  {/* admin routes  */}
  <Route  path="/admin" element={<AdminLoginPage/>}  />
+ <Route element={<AdminAuthorisation/>}>
  <Route  path="/admin/adminHome" element={<AdminHome/>}  />
  <Route  path="/admin/jobPosts" element={<AdminJobPost/>}  />
  <Route  path="/admin/posts" element={<AdminCasualPost/>}  />
-
+ </Route>
   {/* admin routes  */}
 </Routes>
   

@@ -5,10 +5,9 @@ import { setUserProfileModalClose } from '../../../App/ReduxHandlers/ModalSlice'
 import CloseButton from '../../CLoseButton/CloseButton';
 import { CButton } from '../../Button/CButton';
 import { BsSearch } from "react-icons/bs";
-import UserRoundDp from '../../PostBox/UserRoundDp.js/UserRoundDp';
-import baseURL from '../../../Constants/Constants';
 import { useNavigate } from 'react-router-dom';
 import SingleUser from './SingleUser';
+import SingleJob from './SingleJob';
 
 
 function SearchModal() {
@@ -24,14 +23,17 @@ function SearchModal() {
 if (searchInput!="") {
     axios.get(`/getSearchResult?searchInput=${searchInput}&searchFor=${openTab}&userId=${userData._id}`)
     .then((response)=>{
+      console.log(response?.data?.data);
 
       if (response ?. data ?. loadError) {
         navigate('/page404')
         }
         if (response ?. data ?. dataFetched) {
+        
           
-       (openTab === "people")  && setUserSearchOutPut(response?.data?.data)
-       (openTab === "jobs")  && setJobSearchOutPut(response?.data?.data)
+       (openTab === "people") ? setUserSearchOutPut(response?.data?.data):setJobSearchOutPut(response?.data?.data)
+   
+       // setJobSearchOutPut(response?.data?.data)
 
          }
         
@@ -42,6 +44,7 @@ if (searchInput!="") {
        })
   
 }
+
       
     }
     
@@ -131,35 +134,16 @@ if (searchInput!="") {
                   )}
                 </div>}
 
-               {(openTab === 'jobs') && <div  id="link2">
-                  <p>
-                    Completely synergize resource taxing relationships via
-                    premier niche markets. Professionally cultivate one-to-one
-                    customer service with robust ideas.
-                    <br />
-                    <br />
-                    Dynamically innovate resource-leveling customer service for
-                    state of the art customer service.
-                  </p>
-                  <div className='flex justify-between bg-green-500 border-b px-5 py-3 w-full '>
-              <div className='flex'>
-                        <div className=' w-12 h-12 rounded-full mt-1 '>
-                            <UserRoundDp image={`images/dp/`}/>
-                 </div>
-                 
-                      
-                        <div className='flex-col'>
+               {(openTab =='jobs') && <div  id="link2">
+               
+              {
+                jobSearchOutPut?.map((element)=> 
+          <SingleJob singleJobData={element}/>
+               )}
+      </div>
+                  }
 
-                            <h1 className='pl-2'>fcgfvyguh7u
-                            </h1>
-                            <p className='ml-2 font-thin text-sm'>gjbjnkxzczxcczxcxcxzczxlk</p>
-
-                        </div>
-                        
-                    </div>
-
-                  </div>
-                </div>}
+               
                
               </div>
             </div>

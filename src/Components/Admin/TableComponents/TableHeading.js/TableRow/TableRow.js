@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import baseURL from '../../../../../Constants/Constants';
 import UserRoundDp from '../../../../PostBox/UserRoundDp.js/UserRoundDp'
 import moment from 'moment'
-import axios from '../../../../../Config/Axios';
+import axios from '../../../../../Config/adminAxios';
 import {useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { BsThreeDotsVertical,BsTrash } from "react-icons/bs";
@@ -44,7 +44,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
                     }
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
             }
         })
@@ -74,7 +74,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
 
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
 
             }
@@ -101,7 +101,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
                     }
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
             }
         })
@@ -130,7 +130,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
 
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
 
             }
@@ -160,7 +160,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
 
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
             }
         })
@@ -186,7 +186,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
                     }
                 }).catch((error) => {
                     localStorage.clear()
-                    navigate('/')
+                    navigate('/admin')
                 })
             }
         })
@@ -255,7 +255,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
     return (
         <>
        { userList &&
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-400 hover:bg-opacity-30">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-100">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white  flex space-x-2">
                 <div className='w-12 h-12'>
                     <UserRoundDp image={
@@ -300,7 +300,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
 
         </tr>}
         { jobPostList &&
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-100">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white  flex space-x-2">
                 <div className='w-12 h-12'>
                     <UserRoundDp image={
@@ -343,8 +343,8 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
                 } </td>
             <td class="py-4 px-6">
                 {
-                    isBlocked ? <button className='px-1 rounded-lg bg-red-600 bg-opacity-50 text-black '
-                    >Blocked</button> : <button className='px-1 rounded-lg bg-green-600 bg-opacity-50 text-black '
+                    isBlocked ? <button className='px-1 rounded-lg bg-red-600 bg-opacity-50 text-black ' 
+                    >Blocked</button> : <button className='px-1 rounded-lg bg-green-600 bg-opacity-50 text-black ' 
                     >active</button>
                 } </td>
 
@@ -369,7 +369,7 @@ function TableRow({tableRowData,jobPostList,userList,setPostDeleted,postList}) {
         </tr>}
 
         { postList &&
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-100">
             <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white  flex space-x-2">
                 <div className='w-12 h-12'>
                     <UserRoundDp image={
