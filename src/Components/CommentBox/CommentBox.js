@@ -100,7 +100,8 @@ axiosInstance.get(`/addNewComment?postId=${postData._id}&userId=${userData._id}&
      {  postData?.comment?.sort(function(a,b){
 return new Date(b.timeStamp) - new Date(a.timeStamp)}).map((element)=> <div className='flex mt-2 '>
 <div className='h-12 w-12 ' > 
-{/* onClick={()=>navigate(`/userProfileViewByOthers`, { state: element?._id })} */}
+{/* onClick={()=>navigate(`/userProfileViewByOthers`, { state: element?._id })}   need to correct other user id */} 
+
 <UserRoundDp image={`${baseURL}/images/dp/${element.dp}`}/>
 </div> 
 <div className=' ml-2 bg-gray-100 w-full pt-1 px-3 rounded-lg'>

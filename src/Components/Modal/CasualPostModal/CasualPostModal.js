@@ -22,7 +22,7 @@ import { setUserData } from '../../../App/ReduxHandlers/LoginReducer';
 
 
 
-function CasualPostModal() {
+function CasualPostModal({setPostUpdate}) {
     const {userData}=useSelector(state=>state?.login)
     const {videoPost, imagePost, jobPost} = useSelector((state) => state ?. postType)
     const[file,setFile]=useState();
@@ -71,6 +71,7 @@ axios.post('/addNewPost', formData, {
             // to set new useradata
             // dispatch(setUserData(response.data.userData[0]))
             // modal close
+            setPostUpdate(response.data)
             dispatch(setPostModal(false))
         }
     }).catch((error => {

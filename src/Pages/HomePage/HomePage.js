@@ -13,7 +13,7 @@ import ConnectedUsers from '../../Components/ConnectedUsers/ConnectedUsers'
 function HomePage() {
     const {postModal} = useSelector((state) => state ?. modal)
     const [postData,setPostData]=useState([])
-    const [postUpdate,setPostUpdate]=useState({})
+    const [postUpdate,setPostUpdate]=useState(null)
   const navigate=useNavigate()
   useEffect(()=>{
 axios.get("/getCasualPostData").then(response=>{
